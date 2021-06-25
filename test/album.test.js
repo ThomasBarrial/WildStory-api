@@ -5,7 +5,6 @@ const { albumToCreate, albumKeys, trackKeys } = require('./testsData');
 
 describe('🎧 ALBUMS ROUTES', () => {
   const persistentDatas = {};
-
   it('should get the albums list 🧪 /api/albums', async () => {
     const res = await supertest(app)
       .get('/api/albums')
@@ -30,7 +29,7 @@ describe('🎧 ALBUMS ROUTES', () => {
     expect(Array.isArray(res.body)).toBe(true);
 
     res.body.forEach((track) => {
-      expect(track).toHaveProperty("id_album", 1)
+      expect(track).toHaveProperty('id_album', 1);
       trackKeys.map((prop) => {
         expect(track).toHaveProperty(prop);
       });
@@ -62,7 +61,7 @@ describe('🎧 ALBUMS ROUTES', () => {
     persistentDatas.createdAlbum = res.body;
   });
 
-  it(`should update the created album title 🧪 /api/albums/${persistentDatas.createdAlbum.id}`, async () => {
+  it(`should update the created album title 🧪 /api/albums/id`, async () => {
     await supertest(app)
       .put(`/api/albums/${persistentDatas.createdAlbum.id}`)
       .send({
@@ -77,7 +76,7 @@ describe('🎧 ALBUMS ROUTES', () => {
     expect(res.body).toHaveProperty('title', 'The Light Side of the Sun');
   });
 
-  it(`should delete the created album 🧪 /api/albums/${persistentDatas.createdAlbum.id}`, async () => {
+  it(`should delete the created album 🧪 /api/albums/id`, async () => {
     await supertest(app)
       .delete(`/api/albums/${persistentDatas.createdAlbum.id}`)
       .expect(204);
