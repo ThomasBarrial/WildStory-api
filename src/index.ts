@@ -3,7 +3,7 @@ const app = require('./app');
 
 const PORT = process.env.PORT || 8000;
 
-app.listen(PORT, (err) => {
+app.listen(PORT, (err: Error) => {
   // eslint-disable-next-line no-console
   if (err) console.error(err);
   // eslint-disable-next-line no-console
