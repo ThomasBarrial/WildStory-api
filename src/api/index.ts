@@ -1,11 +1,15 @@
-const { Router } = require('express');
+import express from 'express';
 
-const tracks = require('./tracks/tracks.routes');
-const albums = require('./albums/albums.routes');
+import users from './users/users.routes';
 
-const router = Router();
+const router = express.Router();
 
-router.use('/tracks', tracks);
-router.use('/albums', albums);
+router.get('/', (req, res) => {
+  res.json({
+    message: 'API - 👋🌎🌍🌏',
+  });
+});
 
-module.exports = router;
+router.use('/users', users);
+
+export default router;

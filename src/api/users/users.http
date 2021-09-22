@@ -1,0 +1,39 @@
+GET http://localhost:5000/users  HTTP/1.1
+
+###
+
+GET http://localhost:5000/users/fdcad38c-f808-4888-9b6c-5f0328121faf  HTTP/1.1
+
+###
+@contentType = application/json
+POST http://localhost:5000/users
+Content-Type: {{contentType}}
+
+{
+    "username": "user2",
+    "email": "user2@gmail.com",
+    "password": "12345",
+    "city": "Paris",
+    "birthDate": "date de naissance",
+    "avatarUrl": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80",
+    "landimageUrl": "https://images.unsplash.com/photo-1599725055007-b33b6755ef6f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1329&q=80"
+}
+
+
+###
+PUT http://localhost:5000/users/85825da5-7afc-43c5-a21c-2982e897deb4
+Content-Type: application/json
+
+{
+    "username": "user1Modify2",
+    "email": "user2@gmail.com",
+    "password": "12345",
+    "city": "Pau",
+    "birthDate": "date de naissance",
+    "avatarUrl": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80",
+    "landimageUrl": "https://images.unsplash.com/photo-1599725055007-b33b6755ef6f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1329&q=80"
+}
+
+###
+
+DELETE http://localhost:5000/users/85825da5-7afc-43c5-a21c-2982e897deb4
