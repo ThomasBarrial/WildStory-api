@@ -4,7 +4,7 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 
 import api from './api';
-const { notFound, errorHandler } = require('./middlewares');
+import { notFound, errorHandler } from './middlewares';
 
 const app = express();
 
