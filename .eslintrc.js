@@ -15,5 +15,6 @@ module.exports = {
   },
   parserOptions: {
     ecmaVersion: 12,
+    allowImportExportEverywhere: true,
   },
 };
