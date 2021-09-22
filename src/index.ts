@@ -1,11 +1,11 @@
-require('dotenv').config();
-const app = require('./app');
+import dotenv from 'dotenv';
+import app from './app';
 
-const PORT = process.env.PORT || 8000;
+dotenv.config();
 
-app.listen(PORT, (err: Error) => {
+const port = process.env.PORT || 5000;
+
+app.listen(port, async () => {
   // eslint-disable-next-line no-console
-  if (err) console.error(err);
-  // eslint-disable-next-line no-console
-  console.log(`🚀 Server running on http://localhost:${PORT}`);
+  console.log(`Listening: http://localhost:${port}`);
 });

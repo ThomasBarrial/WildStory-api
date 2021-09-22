@@ -1,11 +1,9 @@
-require('dotenv').config();
-
 import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import morgan from 'morgan';
 
-const api = require('./api');
+import api from './api';
 const { notFound, errorHandler } = require('./middlewares');
 
 const app = express();
@@ -18,9 +16,9 @@ if (process.env.NODE_ENV !== 'test') {
   app.use(morgan('dev'));
 }
 
-app.use('/api', api);
+app.use('/', api);
 
 app.use(notFound);
 app.use(errorHandler);
 
-module.exports = app;
+export default app;
