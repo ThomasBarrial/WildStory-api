@@ -17,6 +17,9 @@ const getOne: UserHandlers['getOne'] = async (req, res, next) => {
         birthDate: true,
         avatarUrl: true,
         landimageUrl: true,
+        idFormation: true,
+        createdAt: true,
+        updatedAt: true,
       },
     });
     if (!user) return res.status(204);

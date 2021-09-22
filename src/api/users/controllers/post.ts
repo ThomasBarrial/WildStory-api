@@ -11,6 +11,7 @@ const postUser: UserHandlers['post'] = async (req, res, next) => {
     birthDate,
     avatarUrl,
     landimageUrl,
+    idFormation,
   } = req.body;
 
   const handlePassword = bcrypt.hashSync(password, 10);
@@ -25,6 +26,7 @@ const postUser: UserHandlers['post'] = async (req, res, next) => {
         birthDate,
         avatarUrl,
         landimageUrl,
+        idFormation,
       },
       select: {
         id: true,
@@ -34,6 +36,7 @@ const postUser: UserHandlers['post'] = async (req, res, next) => {
         birthDate: true,
         avatarUrl: true,
         landimageUrl: true,
+        idFormation: true,
       },
     });
     res.status(201).json(user);

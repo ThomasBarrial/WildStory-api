@@ -31,11 +31,11 @@ model User {
 }
 
 model Formation {
-  id        String   @id @default(uuid())
-  name      String
-  users     User[]
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now())
+  id            String   @id @default(uuid())
+  formationName String
+  users         User[]
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @default(now())
 
   @@map(name: "formations")
 }
@@ -85,5 +85,6 @@ model Comment {
   userId String
   post   Post   @relation(fields: [postId], references: [id])
   postId String
-@@map(name: "comments")
+
+  @@map(name: "comments")
 }
