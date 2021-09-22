@@ -1,4 +1,4 @@
-import { Formation, User } from '.prisma/client';
+import { Formation, Skills, User, UserSkill } from '.prisma/client';
 import { RequestHandler } from 'express';
 
 type IUserPost = Omit<User, 'id'>;
@@ -13,9 +13,7 @@ interface UserHandlers {
   delete: RequestHandler<{ id: string }, null, null>;
 }
 
-type IFormation = Omit<Formation, 'id', 'createdAt', 'updatedAt'>;
-
-type IFormationPut = Omit<Formation, 'id', 'createdAt', 'updatedAt', 'name'>;
+type IFormation = Omit<Formation, 'id'>;
 
 interface FormationHandlers {
   getAll: RequestHandler<Record<string, never>, Formation[], null>;
@@ -24,7 +22,33 @@ interface FormationHandlers {
     Formation | Error,
     IFormationPost
   >;
-  put: RequestHandler<{ id: string }, null, IFormationPut>;
+  put: RequestHandler<{ id: string }, null, IFormation>;
   getOne: RequestHandler<{ id: string }, null, IFormation>;
+  delete: RequestHandler<{ id: string }, null, null>;
+}
+
+type ISkills = Omit<Skills, 'id'>;
+
+interface SkillsHandlers {
+  getAll: RequestHandler<Record<string, never>, Skills[]>;
+  post: RequestHandler<Record<string, never>, ISkills>;
+  put: RequestHandler<{ id: string }, null, ISkills>;
+  delete: RequestHandler<{ id: string }, null, null>;
+}
+
+type IUserSkillsPost = Omit<UserSkill, 'id'>;
+type IUserSkillsPut = Omit<UserSkill, 'id', 'userId'>;
+type IUserSkillsResponse = Omit<
+  UserSkill,
+  'userId',
+  'id',
+  'createdAt',
+  'updatedAt'
+>;
+
+interface UserSkillsHandlers {
+  post: RequestHandler<Record<string, never>, IUserSkillsPost>;
+  getUserSkills: RequestHandler<Record<string, never>, IUserSkillsResponse[]>;
+  update: RequestHandler<{ id: string }, null, IUserSkillsPut>;
   delete: RequestHandler<{ id: string }, null, null>;
 }
