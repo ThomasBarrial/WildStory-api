@@ -20,6 +20,8 @@ Content-Type: {{contentType}}
     "idFormation": "4b28b8f1-80ff-4b26-90c8-8ad12d16b575"
 }
 
+###
+GET http://localhost:5000/users/78cbcaf6-8969-45e8-884a-1d3fadac30a0/skills
 
 ###
 PUT http://localhost:5000/users/85825da5-7afc-43c5-a21c-2982e897deb4

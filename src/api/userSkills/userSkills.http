@@ -1,0 +1,28 @@
+
+###
+GET http://localhost:5000/userskills/78cbcaf6-8969-45e8-884a-1d3fadac30a0
+
+###
+@contentType = application/json
+POST http://localhost:5000/userskills
+Content-Type: {{contentType}}
+
+{
+   "userId": "78cbcaf6-8969-45e8-884a-1d3fadac30a0",
+   "skillId": "0aa26e2a-63de-4502-8377-c8840596f236",
+   "note": 3
+}
+
+###
+@contentType = application/json
+PUT http://localhost:5000/userskills/fa4ae659-76ca-4aa1-8c82-558c91ec88f7
+Content-Type: {{contentType}}
+
+{
+   "skillId": "0aa26e2a-63de-4502-8377-c8840596f236",
+   "note": 8
+}
+
+###
+
+DELETE http://localhost:5000/userskills/fa4ae659-76ca-4aa1-8c82-558c91ec88f7
