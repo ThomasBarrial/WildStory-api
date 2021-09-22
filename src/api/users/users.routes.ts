@@ -14,4 +14,5 @@ router.get('/:id', getOne);
 router.post('/', post);
 router.put('/:id', put);
 router.delete('/:id', delete_); // addinng _ here because 'delete' is a reserved name
+
 export default router;
