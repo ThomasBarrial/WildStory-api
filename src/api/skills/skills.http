@@ -2,6 +2,10 @@ GET http://localhost:5000/skills
 
 ###
 
+
+GET http://localhost:5000/skills/dc49e513-efab-416f-baff-46005c7ef66c
+###
+
 @contentType = application/json
 POST http://localhost:5000/skills
 Content-Type: {{contentType}}
