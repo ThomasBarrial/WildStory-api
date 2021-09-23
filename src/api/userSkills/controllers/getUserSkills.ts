@@ -14,8 +14,12 @@ const getUserSkills: UserSkillsHandlers['getUserSkills'] = async (
       },
       select: {
         id: true,
-        skillId: true,
         note: true,
+        skill: {
+          select: {
+            name: true,
+          },
+        },
       },
     });
 
