@@ -17,7 +17,11 @@ const getOne: UserHandlers['getOne'] = async (req, res, next) => {
         birthDate: true,
         avatarUrl: true,
         landimageUrl: true,
-        idFormation: true,
+        formation: {
+          select: {
+            formationName: true,
+          },
+        },
         createdAt: true,
         updatedAt: true,
       },
