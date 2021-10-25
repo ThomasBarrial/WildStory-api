@@ -31,6 +31,7 @@ type ISkills = Omit<Skills, 'id'>;
 
 interface SkillsHandlers {
   getAll: RequestHandler<Record<string, never>, Skills[]>;
+  getOne: RequestHandler<Record<string, never>, Skills | null>;
   post: RequestHandler<Record<string, never>, ISkills>;
   put: RequestHandler<{ id: string }, null, ISkills>;
   delete: RequestHandler<{ id: string }, null, null>;
@@ -49,6 +50,7 @@ type IUserSkillsResponse = Omit<
 interface UserSkillsHandlers {
   post: RequestHandler<Record<string, never>, IUserSkillsPost>;
   getUserSkills: RequestHandler<Record<string, never>, IUserSkillsResponse[]>;
+  getOne: RequestHandler<Record<string, never>, IUserResponse | null>;
   update: RequestHandler<{ id: string }, null, IUserSkillsPut>;
   delete: RequestHandler<{ id: string }, null, null>;
 }

@@ -1,6 +1,11 @@
 
 ###
+// receive a Array of skills from a UserId 
 GET http://localhost:5000/userskills/78cbcaf6-8969-45e8-884a-1d3fadac30a0
+
+###
+
+GET http://localhost:5000/userskills/oneskill/9d8cc326-7aaf-4107-aac1-75180a753bb6
 
 ###
 @contentType = application/json
