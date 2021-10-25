@@ -24,8 +24,8 @@ const getUserSkills: UserSkillsHandlers['getUserSkills'] = async (
     });
 
     res.status(200).json(userSkills);
-  } catch (error) {
-    next(error);
+  } catch (err) {
+    next(err);
   }
 };
 

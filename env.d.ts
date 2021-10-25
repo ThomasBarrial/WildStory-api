@@ -1,4 +1,11 @@
-import { Formation, Skills, User, UserSkill } from '.prisma/client';
+import {
+  Comment,
+  Formation,
+  Post,
+  Skills,
+  User,
+  UserSkill,
+} from '.prisma/client';
 import { RequestHandler } from 'express';
 
 type IUserPost = Omit<User, 'id'>;
@@ -53,4 +60,22 @@ interface UserSkillsHandlers {
   getOne: RequestHandler<Record<string, never>, IUserResponse | null>;
   update: RequestHandler<{ id: string }, null, IUserSkillsPut>;
   delete: RequestHandler<{ id: string }, null, null>;
+}
+
+type ICreatePost = Omit<Post, 'id', 'comments', 'likes'>;
+type IUserPosts = Omit<Post, 'id', 'userId'>;
+interface PostHandlers {
+  getAll: RequestHandler<Record<string, never>, Post[]>;
+  getOne: RequestHandler<Record<string, never>, Post | null>;
+  post: RequestHandler<Record<string, never>, ICreatePost>;
+  update: RequestHandler<Record<string, never>, IUserPosts>;
+  delete: RequestHandler<Record<string, never>, Post>;
+}
+
+interface UserPostHandlers {
+  getUserPost: RequestHandler<Record<string, never>, IUserPosts[]>;
+}
+
+interface CommentsHandlers {
+  getAll: RequestHandler<Record<string, never>, Comment[]>;
 }
