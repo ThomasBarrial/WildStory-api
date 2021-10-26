@@ -13,7 +13,7 @@ POST http://localhost:5000/userskills
 Content-Type: {{contentType}}
 
 {
-   "userId": "78cbcaf6-8969-45e8-884a-1d3fadac30a0",
+   "userId": "666bd831-282f-4103-8f47-881d381cd504",
    "skillId": "0aa26e2a-63de-4502-8377-c8840596f236",
    "note": 3
 }

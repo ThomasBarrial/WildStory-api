@@ -12,7 +12,7 @@ generator client {
 model User {
   id           String      @id @default(uuid())
   username     String      @unique
-  email        String
+  email        String     
   password     String
   city         String?
   birthDate    String?
@@ -31,7 +31,7 @@ model User {
 
 model Formation {
   id            String   @id @default(uuid())
-  formationName String
+  formationName String   @unique
   users         User[]
   createdAt     DateTime @default(now())
   updatedAt     DateTime @default(now())
@@ -56,7 +56,7 @@ model Post {
 
 model Skills {
   id         String      @id @default(uuid())
-  name       String
+  name       String      
   createdAt  DateTime    @default(now())
   updatedAt  DateTime    @default(now())
   userSkills UserSkill[]
