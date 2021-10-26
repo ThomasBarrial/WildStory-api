@@ -1,7 +1,6 @@
 import request from 'supertest';
 import app from '../src/app';
 import { prisma } from '../prisma/prismaClient';
-import e from 'express';
 
 let postId: string;
 let userId: string;
@@ -73,7 +72,7 @@ describe('POST ROUTES', () => {
   });
 
   it('should get one post 🧪 /api/post/:id', async () => {
-    const res = await request(app)
+    await request(app)
       .get(`/api/post/${postId}`)
       .expect(200)
       .expect('Content-Type', /json/);
