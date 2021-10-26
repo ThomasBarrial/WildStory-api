@@ -6,6 +6,7 @@ import skills from './skills/skills.routes';
 import userSkills from './userSkills/userSkills.routes';
 import comments from './comments/comments.routes';
 import post from './post/post.routes';
+import auth from './auth/auth.routes';
 
 const router = express.Router();
 
@@ -21,5 +22,6 @@ router.use('/skills', skills);
 router.use('/userskills', userSkills);
 router.use('/comments/', comments);
 router.use('/post', post);
+router.use('/auth', auth);
 
 export default router;

@@ -81,3 +81,8 @@ interface CommentsHandlers {
   post: RequestHandler<Record<String, never>, Comment | null>;
   delete: RequestHandler<Record<string, never>, Comment>;
 }
+
+interface IAuthBoby {
+  username: string;
+  password: string;
+}
