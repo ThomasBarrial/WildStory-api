@@ -17,9 +17,9 @@ const sampleUser = {
 };
 
 describe('USERS ROUTES', () => {
-  it('should create a new user 🧪 /users', async () => {
+  it('should create a new user 🧪 /api/users', async () => {
     const res = await request(app)
-      .post('/users')
+      .post('/api/users')
       .send(sampleUser)
       .expect(201)
       .expect('Content-Type', /json/);
@@ -30,18 +30,18 @@ describe('USERS ROUTES', () => {
     expect(res.body).toHaveProperty('email', sampleUser.email);
   });
 
-  it('should get the users list 🧪 /users', async () => {
+  it('should get the users list 🧪 /api/users', async () => {
     const res = await request(app)
-      .get('/users')
+      .get('/api/users')
       .expect(200)
       .expect('Content-Type', /json/);
 
     expect(Array.isArray(res.body)).toBe(true);
   });
 
-  it('should get the user with id 🧪 /users/:id', async () => {
+  it('should get the user with id 🧪 /api/users/:id', async () => {
     const res = await request(app)
-      .get(`/users/${userId}`)
+      .get(`/api/users/${userId}`)
       .expect(200)
       .expect('Content-Type', /json/);
 
@@ -49,21 +49,21 @@ describe('USERS ROUTES', () => {
     expect(res.body).toHaveProperty('email', sampleUser.email);
   });
 
-  it(`should update the created user title 🧪 /users/:id`, async () => {
+  it(`should update the created user title 🧪 /api/users/:id`, async () => {
     await request(app)
-      .put(`/users/${userId}`)
+      .put(`/api/users/${userId}`)
       .send({
         username: 'modifyName',
       })
       .expect(204);
 
-    const res = await request(app).get(`/users/${userId}`);
+    const res = await request(app).get(`/api/users/${userId}`);
 
     expect(res.body).toHaveProperty('username', 'modifyName');
   });
 
-  it(`should delete the created user🧪 /users/id`, async () => {
-    await request(app).delete(`/users/${userId}`).expect(204);
+  it(`should delete the created user🧪 /api/users/id`, async () => {
+    await request(app).delete(`/api/users/${userId}`).expect(204);
   });
 });
 

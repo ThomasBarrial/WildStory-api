@@ -9,9 +9,9 @@ const sampleSkills = {
 let skillId: string;
 
 describe('SKILLS ROUTES', () => {
-  it('should create a new skill 🧪 /skills', async () => {
+  it('should create a new skill 🧪 /api/skills', async () => {
     const res = await request(app)
-      .post('/skills')
+      .post('/api/skills')
       .send(sampleSkills)
       .expect(201)
       .expect('Content-Type', /json/);
@@ -21,30 +21,30 @@ describe('SKILLS ROUTES', () => {
     expect(res.body).toHaveProperty('name', sampleSkills.name);
   });
 
-  it('should get the SKILLS list 🧪 /skills', async () => {
+  it('should get the SKILLS list 🧪 /api/skills', async () => {
     const res = await request(app)
-      .get('/skills')
+      .get('/api/skills')
       .expect(200)
       .expect('Content-Type', /json/);
 
     expect(Array.isArray(res.body)).toBe(true);
   });
 
-  it(`should update the created skills title 🧪 /skills/:id`, async () => {
+  it(`should update the created skills title 🧪 /api/skills/:id`, async () => {
     await request(app)
-      .put(`/skills/${skillId}`)
+      .put(`/api/skills/${skillId}`)
       .send({
         name: 'modifyName',
       })
       .expect(204);
 
-    const res = await request(app).get(`/skills/${skillId}`);
+    const res = await request(app).get(`/api/skills/${skillId}`);
 
     expect(res.body).toHaveProperty('name', 'modifyName');
   });
 
-  it(`should delete the created skill🧪 /skills/id`, async () => {
-    await request(app).delete(`/skills/${skillId}`).expect(204);
+  it(`should delete the created skill🧪 /api/skills/id`, async () => {
+    await request(app).delete(`/api/skills/${skillId}`).expect(204);
   });
 });
 

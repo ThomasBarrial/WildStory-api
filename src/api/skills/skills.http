@@ -1,13 +1,13 @@
-GET http://localhost:5000/skills
+GET http://localhost:5000/api/skills
 
 ###
 
 
-GET http://localhost:5000/skills/dc49e513-efab-416f-baff-46005c7ef66c
+GET http://localhost:5000/api/skills/dc49e513-efab-416f-baff-46005c7ef66c
 ###
 
 @contentType = application/json
-POST http://localhost:5000/skills
+POST http://localhost:5000/api/skills
 Content-Type: {{contentType}}
 
 {
@@ -18,7 +18,7 @@ Content-Type: {{contentType}}
 ###
 
 @contentType = application/json
-PUT http://localhost:5000/skills/2cf2d503-a1f4-41e3-9c84-e2d5b8b58f69
+PUT http://localhost:5000/api/skills/2cf2d503-a1f4-41e3-9c84-e2d5b8b58f69
 Content-Type: {{contentType}}
 
 {
@@ -27,4 +27,4 @@ Content-Type: {{contentType}}
 
 ###
 
-DELETE http://localhost:5000/skills
+DELETE http://localhost:5000/api/skills
