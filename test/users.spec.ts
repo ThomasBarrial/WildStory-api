@@ -3,20 +3,38 @@ import app from '../src/app';
 import { prisma } from '../prisma/prismaClient';
 
 let userId: string;
-const sampleUser = {
-  username: 'UserTest',
-  email: 'UserTest@gmail.com',
-  password: '12345',
-  city: 'Londre',
-  birthDate: '06/10/95',
-  avatarUrl:
-    'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80',
-  landimageUrl:
-    'https://images.unsplash.com/photo-1599725055007-b33b6755ef6f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1329&q=80',
-  idFormation: 'a83df665-47dc-4f3e-83d9-254db9dc28c8',
-};
+let idFormation: string;
 
 describe('USERS ROUTES', () => {
+  it('should create a new formations🧪 /formations', async () => {
+    const sampleFormation = {
+      formationName: 'Formation',
+    };
+    const res = await request(app)
+      .post('/api/formations')
+      .send(sampleFormation)
+      .expect(201)
+      .expect('Content-Type', /json/);
+
+    idFormation = res.body.id;
+
+    expect(res.body).toHaveProperty(
+      'formationName',
+      sampleFormation.formationName
+    );
+  });
+  const sampleUser = {
+    username: 'UserTest',
+    email: 'UserTest@gmail.com',
+    password: '12345',
+    city: 'Londre',
+    birthDate: '06/10/95',
+    avatarUrl:
+      'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80',
+    landimageUrl:
+      'https://images.unsplash.com/photo-1599725055007-b33b6755ef6f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1329&q=80',
+    idFormation,
+  };
   it('should create a new user 🧪 /api/users', async () => {
     const res = await request(app)
       .post('/api/users')
@@ -64,6 +82,9 @@ describe('USERS ROUTES', () => {
 
   it(`should delete the created user🧪 /api/users/id`, async () => {
     await request(app).delete(`/api/users/${userId}`).expect(204);
+  });
+  it(`should delete the created formation🧪 /api/formations/id`, async () => {
+    await request(app).delete(`/api/formations/${idFormation}`).expect(204);
   });
 });
 

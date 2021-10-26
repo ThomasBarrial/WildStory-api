@@ -1,7 +1,7 @@
 
 ###
 // receive a Array of skills from a UserId 
-GET http://localhost:5000/api/userskills/78cbcaf6-8969-45e8-884a-1d3fadac30a0
+GET http://localhost:5000/api/userskills/7c5c2914-da72-4fd8-83cc-2a3a52eefbce
 
 ###
 
@@ -13,9 +13,9 @@ POST http://localhost:5000/api/userskills
 Content-Type: {{contentType}}
 
 {
-   "userId": "666bd831-282f-4103-8f47-881d381cd504",
-   "skillId": "0aa26e2a-63de-4502-8377-c8840596f236",
-   "note": 3
+   "userId": "7c5c2914-da72-4fd8-83cc-2a3a52eefbce",
+   "skillId": "a004f6af-7059-4fe1-be29-cc971d4c6361",
+   "note": 7
 }
 
 ###
