@@ -12,10 +12,10 @@ POST http://localhost:5000/api/post
 Content-Type: {{contentType}}
 
 {
-    "title": "Post10",
+    "title": "Post2",
     "text": " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eu facilisis sem. Vivamus eu facilisis sem.",
-    "imageUrl": "https://images.unsplash.com/photo-1599725055007-b33b6755ef6f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1029&q=80",
-    "userId": "d6cda01c-9977-4059-8604-2de150bbf7c8"
+    "imageUrl": ["https://images.unsplash.com/photo-1599725055007-b33b6755ef6f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1029&q=80", "https://images.unsplash.com/photo-1599725055007-b33b6755ef6f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1029&q=80"],
+    "userId": "7c5c2914-da72-4fd8-83cc-2a3a52eefbce"
 }
 
 ###

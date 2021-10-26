@@ -9,7 +9,7 @@ let note: number;
 let idFormation: string;
 
 describe('USERSKILLS ROUTES', () => {
-  it('should create a new formations🧪 /formations', async () => {
+  it('should create a new formations🧪 /api/formations', async () => {
     const sampleFormation = {
       formationName: 'Formationskillstest',
     };

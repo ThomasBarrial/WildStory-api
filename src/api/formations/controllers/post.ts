@@ -18,6 +18,7 @@ const postFormation: FormationHandlers['post'] = async (req, res, next) => {
     });
     res.status(201).json(formation);
   } catch (error) {
+    res.status(422);
     next(error);
   }
 };

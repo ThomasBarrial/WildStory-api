@@ -12,7 +12,7 @@ generator client {
 model User {
   id           String      @id @default(uuid())
   username     String      @unique
-  email        String     
+  email        String      @unique
   password     String
   city         String?
   birthDate    String?
@@ -44,7 +44,7 @@ model Post {
   title     String
   text      String
   likes     Int?
-  imageUrl  String    @map(name: "image_url")
+  imageUrl  String[]    @map(name: "image_url")
   createdAt DateTime  @default(now())
   updatedAt DateTime  @default(now())
   user      User      @relation(fields: [userId], references: [id])
@@ -84,6 +84,9 @@ model Comment {
   userId String
   post   Post   @relation(fields: [postId], references: [id])
   postId String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
 
   @@map(name: "comments")
 }
+

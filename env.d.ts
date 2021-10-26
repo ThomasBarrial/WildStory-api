@@ -78,4 +78,6 @@ interface UserPostHandlers {
 
 interface CommentsHandlers {
   getAll: RequestHandler<Record<string, never>, Comment[]>;
+  post: RequestHandler<Record<String, never>, Comment | null>;
+  delete: RequestHandler<Record<string, never>, Comment>;
 }
