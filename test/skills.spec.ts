@@ -6,7 +6,21 @@ const sampleSkills = {
   name: 'MongoDb',
 };
 
+let skillId: string;
+
 describe('SKILLS ROUTES', () => {
+  it('should create a new skill 🧪 /skills', async () => {
+    const res = await request(app)
+      .post('/skills')
+      .send(sampleSkills)
+      .expect(201)
+      .expect('Content-Type', /json/);
+
+    skillId = res.body.id;
+
+    expect(res.body).toHaveProperty('name', sampleSkills.name);
+  });
+
   it('should get the SKILLS list 🧪 /skills', async () => {
     const res = await request(app)
       .get('/skills')
@@ -16,38 +30,24 @@ describe('SKILLS ROUTES', () => {
     expect(Array.isArray(res.body)).toBe(true);
   });
 
-  it('should create a new skill 🧪 /skills', async () => {
-    const res = await request(app)
-      .post('/skills')
-      .send(sampleSkills)
-      .expect(201)
-      .expect('Content-Type', /json/);
-
-    expect(res.body).toHaveProperty('name', sampleSkills.name);
-  });
-
   it(`should update the created skills title 🧪 /skills/:id`, async () => {
-    const { id } = await prisma.skills.create({
-      data: sampleSkills,
-    });
-
     await request(app)
-      .put(`/skills/${id}`)
+      .put(`/skills/${skillId}`)
       .send({
         name: 'modifyName',
       })
       .expect(204);
 
-    const res = await request(app).get(`/skills/${id}`);
+    const res = await request(app).get(`/skills/${skillId}`);
 
     expect(res.body).toHaveProperty('name', 'modifyName');
   });
 
   it(`should delete the created skill🧪 /skills/id`, async () => {
-    const { id } = await prisma.skills.create({
-      data: sampleSkills,
-    });
-
-    await request(app).delete(`/skills/${id}`).expect(204);
+    await request(app).delete(`/skills/${skillId}`).expect(204);
   });
+});
+
+afterAll(async () => {
+  await prisma.$disconnect();
 });

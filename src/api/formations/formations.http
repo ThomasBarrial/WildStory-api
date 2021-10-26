@@ -2,7 +2,7 @@ GET http://localhost:5000/formations
 
 ###
 
-GET http://localhost:5000/formations/b58976b0-ab67-438b-a1dc-d933b8ca9be5
+GET http://localhost:5000/formations/6a7299b3-50fd-41ae-ae0f-ccf8986f9997
 
 ###
 @contentType = application/json
@@ -10,7 +10,7 @@ POST http://localhost:5000/formations
 Content-Type: {{contentType}}
 
 {
-    "formationName": "Developper Mobile"
+    "formationName": "Formation"
 }
 
 ###

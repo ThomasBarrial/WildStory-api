@@ -11,7 +11,7 @@ POST http://localhost:5000/skills
 Content-Type: {{contentType}}
 
 {
-    "name": "Figma"
+    "name": "Node"
 }
 
 
