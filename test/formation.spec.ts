@@ -10,7 +10,7 @@ let idFormation: string;
 describe('FORMATIONS ROUTES', () => {
   it('should create a new formations🧪 /formations', async () => {
     const res = await request(app)
-      .post('/formations')
+      .post('/api/formations')
       .send(sampleFormation)
       .expect(201)
       .expect('Content-Type', /json/);
@@ -25,7 +25,7 @@ describe('FORMATIONS ROUTES', () => {
 
   it('should get the formations list 🧪 /formations', async () => {
     const res = await request(app)
-      .get('/formations')
+      .get('/api/formations')
       .expect(200)
       .expect('Content-Type', /json/);
 
@@ -34,7 +34,7 @@ describe('FORMATIONS ROUTES', () => {
 
   it('should get the formation with id 🧪 /formation/:id', async () => {
     const res = await request(app)
-      .get(`/formations/${idFormation}`)
+      .get(`/api/formations/${idFormation}`)
       .expect(200)
       .expect('Content-Type', /json/);
 
@@ -44,21 +44,21 @@ describe('FORMATIONS ROUTES', () => {
     );
   });
 
-  it(`should update the created formation title 🧪 /formations/:id`, async () => {
+  it(`should update the created formation title 🧪 /api/formations/:id`, async () => {
     await request(app)
-      .put(`/formations/${idFormation}`)
+      .put(`/api/formations/${idFormation}`)
       .send({
         formationName: 'modifyName',
       })
       .expect(204);
 
-    const res = await request(app).get(`/formations/${idFormation}`);
+    const res = await request(app).get(`/api/formations/${idFormation}`);
 
     expect(res.body).toHaveProperty('formationName', 'modifyName');
   });
 
-  it(`should delete the created formation🧪 /formations/id`, async () => {
-    await request(app).delete(`/formations/${idFormation}`).expect(204);
+  it(`should delete the created formation🧪 /api/formations/id`, async () => {
+    await request(app).delete(`/api/formations/${idFormation}`).expect(204);
   });
 });
 

@@ -1,19 +1,19 @@
-GET http://localhost:5000/users  HTTP/1.1
+GET http://localhost:5000/api/users  HTTP/1.1
 
 ###
 
-GET http://localhost:5000/users/78cbcaf6-8969-45e8-884a-1d3fadac30a0  HTTP/1.1
+GET http://localhost:5000/api/users/f9906d17-0d4d-4531-b838-3c2c18275503  HTTP/1.1
 
 ###
 @contentType = application/json
-POST http://localhost:5000/users
+POST http://localhost:5000/api/users
 Content-Type: {{contentType}}
 
 {
-    "username": "User1",
-    "email": "User1@gmail.com",
+    "username": "User2",
+    "email": "User2@gmail.com",
     "password": "12345",
-    "city": "Londre",
+    "city": "Paris",
     "birthDate": "06/10/95",
     "avatarUrl": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80",
     "landimageUrl": "https://images.unsplash.com/photo-1599725055007-b33b6755ef6f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1329&q=80",
@@ -21,10 +21,10 @@ Content-Type: {{contentType}}
 }
 
 ###
-GET http://localhost:5000/users/78cbcaf6-8969-45e8-884a-1d3fadac30a0/skills
+GET http://localhost:5000/api/users/78cbcaf6-8969-45e8-884a-1d3fadac30a0/skills
 
 ###
-PUT http://localhost:5000/users/85fdd6a9-025b-477e-8a36-743f1f61103e
+PUT http://localhost:5000/api/users/85fdd6a9-025b-477e-8a36-743f1f61103e
 Content-Type: application/json
 
 {
@@ -38,4 +38,4 @@ Content-Type: application/json
 
 ###
 
-DELETE http://localhost:5000/users/807df057-61a9-4951-a49e-617dc1692bd3
+DELETE http://localhost:5000/api/users/807df057-61a9-4951-a49e-617dc1692bd3

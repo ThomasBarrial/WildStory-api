@@ -21,9 +21,9 @@ let skillId: string;
 let note: number;
 
 describe('USERSKILLS ROUTES', () => {
-  it('should create a new user 🧪 /users', async () => {
+  it('should create a new user 🧪 /api/users', async () => {
     const res = await request(app)
-      .post('/users')
+      .post('/api/users')
       .send(sampleUser)
       .expect(201)
       .expect('Content-Type', /json/);
@@ -33,12 +33,12 @@ describe('USERSKILLS ROUTES', () => {
     expect(res.body).toHaveProperty('username', sampleUser.username);
     expect(res.body).toHaveProperty('email', sampleUser.email);
   });
-  it('should create a new skill 🧪 /skills', async () => {
+  it('should create a new skill 🧪 /api/skills', async () => {
     const sampleSkills = {
       name: 'testSkill',
     };
     const res = await request(app)
-      .post('/skills')
+      .post('/api/skills')
       .send(sampleSkills)
       .expect(201)
       .expect('Content-Type', /json/);
@@ -47,7 +47,7 @@ describe('USERSKILLS ROUTES', () => {
 
     expect(res.body).toHaveProperty('name', sampleSkills.name);
   });
-  it('should create a new user Skill 🧪 /skills', async () => {
+  it('should create a new user Skill 🧪 /api/skills', async () => {
     const sampleUserSkills = {
       skillId,
       userId,
@@ -55,7 +55,7 @@ describe('USERSKILLS ROUTES', () => {
     };
 
     const res = await request(app)
-      .post('/userskills')
+      .post('/api/userskills')
       .send(sampleUserSkills)
       .expect(201)
       .expect('Content-Type', /json/);
@@ -68,46 +68,48 @@ describe('USERSKILLS ROUTES', () => {
     expect(res.body).toHaveProperty('note', sampleUserSkills.note);
   });
 
-  it('should get the skills list of a user 🧪 /skills/userId', async () => {
+  it('should get the skills list of a user 🧪 /api/skills/userId', async () => {
     const res = await request(app)
-      .get(`/userskills/${userId}`)
+      .get(`/api/userskills/${userId}`)
       .expect(200)
       .expect('Content-Type', /json/);
 
     expect(Array.isArray(res.body)).toBe(true);
   });
 
-  it('should get the userSkill with id 🧪 /skills/oneskill/:id', async () => {
+  it('should get the userSkill with id 🧪 /api//skills/oneskill/:id', async () => {
     const res = await request(app)
-      .get(`/userskills/oneskill/${userSkillId}`)
+      .get(`/api/userskills/oneskill/${userSkillId}`)
       .expect(200)
       .expect('Content-Type', /json/);
 
     expect(res.body).toHaveProperty('note', note);
   });
 
-  it(`should update the created userSkill title 🧪 /skills/:id`, async () => {
+  it(`should update the created userSkill title 🧪 /api/skills/:id`, async () => {
     await request(app)
-      .put(`/userskills/${userSkillId}`)
+      .put(`/api/userskills/${userSkillId}`)
       .send({
         note: 5,
       })
       .expect(204);
 
-    const res = await request(app).get(`/userskills/oneskill/${userSkillId}`);
+    const res = await request(app).get(
+      `/api/userskills/oneskill/${userSkillId}`
+    );
 
     expect(res.body).toHaveProperty('note', 5);
   });
 
-  it(`should delete the created userSkill🧪 /usersskills/:id`, async () => {
-    await request(app).delete(`/userskills/${userSkillId}`).expect(204);
+  it(`should delete the created userSkill🧪 /api/usersskills/:id`, async () => {
+    await request(app).delete(`/api/userskills/${userSkillId}`).expect(204);
   });
 
-  it(`should delete the created user🧪 /users/id`, async () => {
-    await request(app).delete(`/users/${userId}`).expect(204);
+  it(`should delete the created user🧪 /api/users/id`, async () => {
+    await request(app).delete(`/api/users/${userId}`).expect(204);
   });
-  it(`should delete the created skill🧪 /skills/id`, async () => {
-    await request(app).delete(`/skills/${skillId}`).expect(204);
+  it(`should delete the created skill🧪 /api//skills/id`, async () => {
+    await request(app).delete(`/api//skills/${skillId}`).expect(204);
   });
 });
 

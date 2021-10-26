@@ -16,7 +16,7 @@ if (process.env.NODE_ENV !== 'test') {
   app.use(morgan('dev'));
 }
 
-app.use('/', api);
+app.use('/api/', api);
 
 app.use(notFound);
 app.use(errorHandler);
