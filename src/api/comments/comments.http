@@ -1,0 +1,16 @@
+GET http://localhost:5000/api/comments
+
+###
+
+@contentType = application/json
+POST http://localhost:5000/api/comments
+Content-Type: {{contentType}}
+
+{
+    "text": "Hello ceci est un 2ième commentaire",
+    "userId": "39a541a9-eb91-463b-ad40-a5108f736a38",
+    "postId": "fa9404cd-d982-4e9a-8d38-8973df808d05"
+}
+
+###
+DELETE  http://localhost:5000/api/comments/d55645c7-1b03-453a-8f53-d2281b7b3ac4

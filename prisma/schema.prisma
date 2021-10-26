@@ -1,6 +1,5 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
@@ -12,8 +11,8 @@ generator client {
 
 model User {
   id           String      @id @default(uuid())
-  username     String
-  email        String
+  username     String      @unique
+  email        String      @unique
   password     String
   city         String?
   birthDate    String?
@@ -31,11 +30,11 @@ model User {
 }
 
 model Formation {
-  id        String   @id @default(uuid())
-  name      String
-  users     User[]
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now())
+  id            String   @id @default(uuid())
+  formationName String   @unique
+  users         User[]
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @default(now())
 
   @@map(name: "formations")
 }
@@ -45,7 +44,7 @@ model Post {
   title     String
   text      String
   likes     Int?
-  imageUrl  String    @map(name: "image_url")
+  imageUrl  String[]    @map(name: "image_url")
   createdAt DateTime  @default(now())
   updatedAt DateTime  @default(now())
   user      User      @relation(fields: [userId], references: [id])
@@ -57,7 +56,7 @@ model Post {
 
 model Skills {
   id         String      @id @default(uuid())
-  name       String
+  name       String      
   createdAt  DateTime    @default(now())
   updatedAt  DateTime    @default(now())
   userSkills UserSkill[]
@@ -85,5 +84,9 @@ model Comment {
   userId String
   post   Post   @relation(fields: [postId], references: [id])
   postId String
-@@map(name: "comments")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+
+  @@map(name: "comments")
 }
+

@@ -1,0 +1,30 @@
+GET http://localhost:5000/api/skills
+
+###
+
+
+GET http://localhost:5000/api/skills/dc49e513-efab-416f-baff-46005c7ef66c
+###
+
+@contentType = application/json
+POST http://localhost:5000/api/skills
+Content-Type: {{contentType}}
+
+{
+    "name": "Figma"
+}
+
+
+###
+
+@contentType = application/json
+PUT http://localhost:5000/api/skills/2cf2d503-a1f4-41e3-9c84-e2d5b8b58f69
+Content-Type: {{contentType}}
+
+{
+    "name": "Figma"
+}
+
+###
+
+DELETE http://localhost:5000/api/skills

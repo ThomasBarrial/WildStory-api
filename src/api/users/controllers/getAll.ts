@@ -12,6 +12,13 @@ const getAll: UserHandlers['getAll'] = async (req, res, next) => {
         birthDate: true,
         avatarUrl: true,
         landimageUrl: true,
+        formation: {
+          select: {
+            formationName: true,
+          },
+        },
+        createdAt: true,
+        updatedAt: true,
       },
     });
     return res.status(200).json(user);

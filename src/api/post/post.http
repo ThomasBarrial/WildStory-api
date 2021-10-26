@@ -1,0 +1,35 @@
+GET  http://localhost:5000/api/post
+
+###
+GET http://localhost:5000/api/post/13d27728-546b-46d5-a05d-f265797dea66
+
+###
+GET http://localhost:5000/api/post/user/d6cda01c-9977-4059-8604-2de150bbf7c8
+
+###
+@contentType = application/json
+POST http://localhost:5000/api/post
+Content-Type: {{contentType}}
+
+{
+    "title": "Post2",
+    "text": " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eu facilisis sem. Vivamus eu facilisis sem.",
+    "imageUrl": ["https://images.unsplash.com/photo-1599725055007-b33b6755ef6f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1029&q=80", "https://images.unsplash.com/photo-1599725055007-b33b6755ef6f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1029&q=80"],
+    "userId": "7c5c2914-da72-4fd8-83cc-2a3a52eefbce"
+}
+
+###
+
+@contentType = application/json
+PUT http://localhost:5000/api/post/8e675ebe-64c6-4c3d-bcaa-a1758bba22f9
+Content-Type: {{contentType}}
+
+{
+    "title": "Post1",
+    "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eu facilisis sem. Vivamus eu facilisis sem. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eu facilisis sem. Vivamus eu facilisis sem.",
+    "imageUrl": "https://images.unsplash.com/photo-1599725055007-b33b6755ef6f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1029&q=80"
+}
+
+###
+
+DELETE http://localhost:5000/api/post/cb4d785e-a737-4221-adbd-45bb0864cbc2

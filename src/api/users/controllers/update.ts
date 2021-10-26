@@ -1,17 +1,10 @@
 import { UserHandlers } from 'env';
 import { prisma } from '../../../../prisma/prismaClient';
 
-const putUser: UserHandlers['put'] = async (req, res, next) => {
+const updateUser: UserHandlers['put'] = async (req, res, next) => {
   const { id } = req.params;
-  const {
-    username,
-    email,
-    password,
-    city,
-    birthDate,
-    avatarUrl,
-    landimageUrl,
-  } = req.body;
+  const { username, email, city, birthDate, avatarUrl, landimageUrl } =
+    req.body;
   try {
     await prisma.user.update({
       where: {
@@ -20,7 +13,6 @@ const putUser: UserHandlers['put'] = async (req, res, next) => {
       data: {
         username,
         email,
-        password,
         city,
         birthDate,
         avatarUrl,
@@ -43,4 +35,4 @@ const putUser: UserHandlers['put'] = async (req, res, next) => {
   }
 };
 
-export default putUser;
+export default updateUser;
