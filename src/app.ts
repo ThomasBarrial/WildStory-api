@@ -9,7 +9,11 @@ import { notFound, errorHandler } from './middlewares';
 const app = express();
 
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: '*',
+  })
+);
 app.use(helmet());
 
 if (process.env.NODE_ENV !== 'test') {
