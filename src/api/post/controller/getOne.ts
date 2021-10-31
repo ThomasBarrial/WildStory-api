@@ -27,6 +27,7 @@ const getOne: PostHandlers['getOne'] = async (req, res, next) => {
             user: {
               select: {
                 username: true,
+                avatarUrl: true,
               },
             },
           },
