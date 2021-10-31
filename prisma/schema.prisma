@@ -61,8 +61,8 @@ model Post {
   id        String    @id @default(uuid())
   title     String
   text      String
-  likes     Int?
-  imageUrl  String[]    @map(name: "image_url")
+  likes     Int       @default(0)
+  imageUrl  String[]  @map(name: "image_url")
   createdAt DateTime  @default(now())
   updatedAt DateTime  @default(now())
   user      User      @relation(fields: [userId], references: [id])
