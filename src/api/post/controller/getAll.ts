@@ -23,6 +23,7 @@ const getAll: PostHandlers['getAll'] = async (req, res, next) => {
             user: {
               select: {
                 username: true,
+                avatarUrl: true,
               },
             },
           },
