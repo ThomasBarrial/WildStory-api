@@ -23,6 +23,7 @@ const getOne: PostHandlers['getOne'] = async (req, res, next) => {
         userId: true,
         comments: {
           select: {
+            id: true,
             text: true,
             user: {
               select: {
