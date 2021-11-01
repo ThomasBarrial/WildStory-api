@@ -70,6 +70,7 @@ interface PostHandlers {
   post: RequestHandler<Record<string, never>, ICreatePost>;
   update: RequestHandler<Record<string, never>, IUserPosts>;
   delete: RequestHandler<Record<string, never>, Post>;
+  getComments: RequestHandler<{ id: string }, Comment[]>;
 }
 
 interface UserPostHandlers {
