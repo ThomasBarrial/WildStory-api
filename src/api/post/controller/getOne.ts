@@ -14,12 +14,6 @@ const getOne: PostHandlers['getOne'] = async (req, res, next) => {
         text: true,
         likes: true,
         imageUrl: true,
-        user: {
-          select: {
-            username: true,
-            avatarUrl: true,
-          },
-        },
         userId: true,
         createdAt: true,
         updatedAt: true,

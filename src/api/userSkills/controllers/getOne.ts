@@ -11,16 +11,8 @@ const getOne: UserSkillsHandlers['getOne'] = async (req, res, next) => {
       },
       select: {
         id: true,
-        user: {
-          select: {
-            username: true,
-          },
-        },
-        skill: {
-          select: {
-            name: true,
-          },
-        },
+        userId: true,
+        skillId: true,
         note: true,
       },
     });
