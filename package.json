@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.ts",
+  "engines": {
+    "node": "15.11.0"
+  },
   "scripts": {
     "test": "jest",
     "start": " prisma migrate deploy && ts-node ./src/index.ts",
