@@ -34,7 +34,7 @@ const postUser: UserHandlers['post'] = async (req, res, next) => {
         birthDate,
         avatarUrl,
         landimageUrl,
-        idFormation,
+        formation,
       },
       select: {
         id: true,
