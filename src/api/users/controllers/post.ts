@@ -10,6 +10,7 @@ const postUser: UserHandlers['post'] = async (req, res, next) => {
     password,
     city,
     birthDate,
+    profilTitle,
     avatarUrl,
     landimageUrl,
     idFormation,
@@ -29,6 +30,7 @@ const postUser: UserHandlers['post'] = async (req, res, next) => {
       data: {
         username,
         email,
+        profilTitle,
         password: handlePassword,
         city,
         birthDate,
