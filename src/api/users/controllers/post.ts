@@ -6,6 +6,7 @@ const postUser: UserHandlers['post'] = async (req, res, next) => {
   let formation;
   const {
     username,
+    profilTitle,
     email,
     password,
     city,
@@ -28,6 +29,7 @@ const postUser: UserHandlers['post'] = async (req, res, next) => {
     const user = await prisma.user.create({
       data: {
         username,
+        profilTitle,
         email,
         password: handlePassword,
         city,

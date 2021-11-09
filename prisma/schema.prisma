@@ -45,9 +45,9 @@ model MediaLink {
   id          String   @id @default(uuid())
   name        String
   link        String
-  icon        MediaIcon? @relation(fields: [idIcon], references: [id])
-  idIcon     String?
-  users         User[]
+  icon        MediaIcon? @relation(fields: [iconId], references: [id])
+  iconId      String?
+  users       User[]
 }
 
 model MediaIcon {
