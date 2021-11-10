@@ -13,14 +13,11 @@ const getUserPost: UserPostHandlers['getUserPost'] = async (req, res, next) => {
         text: true,
         imageUrl: true,
         likes: true,
+        userId: true,
         comments: {
           select: {
             text: true,
-            user: {
-              select: {
-                username: true,
-              },
-            },
+            userId: true,
           },
         },
         createdAt: true,
