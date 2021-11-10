@@ -1,25 +1,28 @@
 import { MediaIconHandlers } from 'env';
 import { prisma } from '../../../../prisma/prismaClient';
 
-const postMediaIcon: MediaIconHandlers['post'] = async (req, res, next) => {
+const updateMediaIcon: MediaIconHandlers['update'] = async (req, res, next) => {
+  const { id } = req.params;
   const { name, iconUrl } = req.body;
-
   try {
-    const mediaIcon = await prisma.mediaIcon.create({
+    await prisma.mediaIcon.update({
+      where: {
+        id,
+      },
       data: {
         name,
         iconUrl,
       },
       select: {
         id: true,
-        name: true,
         iconUrl: true,
+        mediaLink: true,
       },
     });
-    res.status(201).json(mediaIcon);
+    res.sendStatus(204);
   } catch (error) {
     next(error);
   }
 };
 
-export default postMediaIcon;
+export default updateMediaIcon;

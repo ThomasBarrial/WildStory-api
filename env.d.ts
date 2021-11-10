@@ -85,7 +85,11 @@ interface CommentsHandlers {
 }
 
 interface MediaIconHandlers {
+  getAll: RequestHandler<Record<string, never>, MediaIcon[]>;
+  getOne: RequestHandler<Record<string, never>, MediaIcon | null>;
   post: RequestHandler<Record<string, never>, MediaIcon>;
+  update: RequestHandler<Record<string, never>, MediaIcon>;
+  delete: RequestHandler<Record<string, never>, MediaIcon>;
 }
 
 interface IAuthBoby {
