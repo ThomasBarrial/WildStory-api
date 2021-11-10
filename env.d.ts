@@ -5,6 +5,7 @@ import {
   Skills,
   User,
   UserSkill,
+  MediaIcon,
 } from '.prisma/client';
 import { RequestHandler } from 'express';
 
@@ -81,6 +82,14 @@ interface CommentsHandlers {
   getAll: RequestHandler<Record<string, never>, Comment[]>;
   post: RequestHandler<Record<string, never>, Comment | null>;
   delete: RequestHandler<Record<string, never>, Comment>;
+}
+
+interface MediaIconHandlers {
+  getAll: RequestHandler<Record<string, never>, MediaIcon[]>;
+  getOne: RequestHandler<Record<string, never>, MediaIcon | null>;
+  post: RequestHandler<Record<string, never>, MediaIcon>;
+  update: RequestHandler<Record<string, never>, MediaIcon>;
+  delete: RequestHandler<Record<string, never>, MediaIcon>;
 }
 
 interface IAuthBoby {
