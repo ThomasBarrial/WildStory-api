@@ -11,6 +11,7 @@ Content-Type: {{contentType}}
 
 {
     "username": "User3",
+    "profilTitle": "développeur",
     "email": "User3@gmail.com",
     "password": "12345",
     "city": "Paris",
@@ -38,4 +39,11 @@ Content-Type: application/json
 
 ###
 
-DELETE http://localhost:5000/api/users/807df057-61a9-4951-a49e-617dc1692bd3
+DELETE http://localhost:5000/api/users/7c5c2914-da72-4fd8-83cc-2a3a52eefbce
+
+
+7c5c2914-da72-4fd8-83cc-2a3a52eefbce
+
+39a541a9-eb91-463b-ad40-a5108f736a38
+
+d6cda01c-9977-4059-8604-2de150bbf7c8

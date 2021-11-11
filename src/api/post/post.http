@@ -32,4 +32,4 @@ Content-Type: {{contentType}}
 
 ###
 
-DELETE http://localhost:5000/api/post/cb4d785e-a737-4221-adbd-45bb0864cbc2
+DELETE http://localhost:5000/api/post/fa9404cd-d982-4e9a-8d38-8973df808d05

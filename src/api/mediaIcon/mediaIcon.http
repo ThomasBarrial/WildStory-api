@@ -1,0 +1,30 @@
+GET http://localhost:5000/api/mediaicons  
+
+###
+
+GET http://localhost:5000/api/mediaicons/64d54e75-bb26-4109-af3e-e3ed4bb9d69f
+
+###
+@contentType = application/json
+POST http://localhost:5000/api/mediaicons
+Content-Type: {{contentType}}
+
+{
+    "name": "Discord",
+    "iconUrl": "https://svgshare.com/i/btZ.svg"
+}
+
+###
+
+@contentType = application/json
+PUT http://localhost:5000/api/mediaicons/64d54e75-bb26-4109-af3e-e3ed4bb9d69f
+Content-Type: {{contentType}}
+
+{
+    "name": "Discord",
+    "iconUrl": "https://svgshare.com/i/btZ.svg"
+}
+
+###
+
+DELETE http://localhost:5000/api/mediaicons/64d54e75-bb26-4109-af3e-e3ed4bb9d69f
