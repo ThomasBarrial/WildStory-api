@@ -9,6 +9,7 @@ let commentId: string;
 describe('COMMENTS ROUTES', () => {
   const sampleUser = {
     username: 'UserTestcomment',
+    profilTitle: 'Dev & Figmal',
     email: 'UserTestComment@gmail.com',
     password: '12345',
     city: 'Londre',

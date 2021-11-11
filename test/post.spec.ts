@@ -9,6 +9,7 @@ let idFormation: string;
 describe('POST ROUTES', () => {
   const sampleUser = {
     username: 'UserTestPost',
+    profilTitle: 'Dev & Figmal',
     email: 'UserTestPost@gmail.com',
     password: '12345',
     city: 'Londre',

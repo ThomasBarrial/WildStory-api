@@ -7,12 +7,11 @@ Content-Type: {{contentType}}
 
 {
     "link": "https://www.discord.com/",
-    "iconId": "0f9569bd-1313-43f4-abdd-a1198098db68",
-    "userId": "f6db8373-553f-4900-a234-5ee99cd0426e"
+    "iconId": "1934ef8f-81a2-4f58-a10c-05861eb20634",
+    "userId": "5578b7de-3b6d-4a1d-a728-537917c21032"
 }
 
 ###
-
 
 @contentType = application/json
 
@@ -27,4 +26,4 @@ Content-Type: {{contentType}}
 
 ### 
 
-DELETE http://localhost:5000/api/medialinks/2ac3d3f6-cf1c-45ed-9763-f0778f27c1d7
+DELETE http://localhost:5000/api/medialinks/234aa110-35e9-421f-a6ea-8f2047d053f9
