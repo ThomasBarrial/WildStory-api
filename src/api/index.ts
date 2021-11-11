@@ -8,6 +8,7 @@ import comments from './comments/comments.routes';
 import post from './post/post.routes';
 import mediaIcon from './mediaIcon/media.routes';
 import auth from './auth/auth.routes';
+import mediaLinks from './mediaLinks/medialink.routes';
 
 const router = express.Router();
 
@@ -24,6 +25,7 @@ router.use('/userskills', userSkills);
 router.use('/comments/', comments);
 router.use('/post', post);
 router.use('/mediaicons', mediaIcon);
+router.use('/medialinks', mediaLinks);
 router.use('/auth', auth);
 
 export default router;

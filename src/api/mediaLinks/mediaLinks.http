@@ -1,0 +1,30 @@
+GET http://localhost:5000/api/medialinks/user/f6db8373-553f-4900-a234-5ee99cd0426e
+
+### 
+@contentType = application/json
+POST http://localhost:5000/api/medialinks
+Content-Type: {{contentType}}
+
+{
+    "link": "https://www.discord.com/",
+    "iconId": "0f9569bd-1313-43f4-abdd-a1198098db68",
+    "userId": "f6db8373-553f-4900-a234-5ee99cd0426e"
+}
+
+###
+
+
+@contentType = application/json
+
+PUT http://localhost:5000/api/medialinks/2ac3d3f6-cf1c-45ed-9763-f0778f27c1d7
+Content-Type: {{contentType}}
+
+{
+    "link": "https://www.discord.com/",
+    "iconId": "0f9569bd-1313-43f4-abdd-a1198098db68",
+    "userId": "f6db8373-553f-4900-a234-5ee99cd0426e"
+}
+
+### 
+
+DELETE http://localhost:5000/api/medialinks/2ac3d3f6-cf1c-45ed-9763-f0778f27c1d7

@@ -11,6 +11,7 @@ Content-Type: {{contentType}}
 
 {
     "username": "User3",
+    "profilTitle": "développeur",
     "email": "User3@gmail.com",
     "password": "12345",
     "city": "Paris",
