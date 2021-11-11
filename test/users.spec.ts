@@ -8,6 +8,7 @@ describe('USERS ROUTES', () => {
   it('should create a new user 🧪 /api/users', async () => {
     const sampleUser = {
       username: 'UserTest',
+      profilTitle: 'Dev & Figmal',
       email: 'UserTest@gmail.com',
       password: '12345',
       city: 'Londre',

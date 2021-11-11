@@ -57,7 +57,7 @@ describe('FORMATIONS ROUTES', () => {
     expect(res.body).toHaveProperty('formationName', 'modifyName');
   });
 
-  it(`should delete the created formation🧪 /api/formations/id`, async () => {
+  it(`should delete the created formation🧪 /api/formations/:id`, async () => {
     await request(app).delete(`/api/formations/${idFormation}`).expect(204);
   });
 });
