@@ -43,11 +43,11 @@ model Formation {
 
 model MediaLink {
   id     String     @id @default(uuid())
-  name   String
   link   String
   icon   MediaIcon? @relation(fields: [iconId], references: [id])
   iconId String?
-  users  User[]
+  user   User       @relation(fields: [userId], references: [id])
+  userId String
 }
 
 model MediaIcon {
