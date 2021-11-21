@@ -6,11 +6,11 @@ const getUserSkills: UserSkillsHandlers['getUserSkills'] = async (
   res,
   next
 ) => {
-  const { userId } = req.params;
+  const { id } = req.params;
   try {
     const userSkills = await prisma.userSkill.findMany({
       where: {
-        userId,
+        userId: id,
       },
       select: {
         id: true,

@@ -14,9 +14,10 @@ model User {
   username     String      @unique
   email        String      @unique
   password     String
+  role         Role        @default(USER)
   profilTitle  String
   city         String?
-  birthDate    String?
+  birthDate    String
   avatarUrl    String?     @map(name: "avatar_url")
   landimageUrl String?     @map(name: "landimage_url")
   formation    Formation?  @relation(fields: [idFormation], references: [id])
@@ -106,4 +107,10 @@ model Comment {
   updatedAt DateTime @default(now())
 
   @@map(name: "comments")
+}
+
+enum Role {
+  ADMIN
+  USER
+
 }

@@ -6,11 +6,12 @@ const getUserMediaLink: MediaLinkHandlers['getUserMediaLinks'] = async (
   res,
   next
 ) => {
-  const { userId } = req.params;
+  const { id } = req.params;
+
   try {
     const userMediaLink = await prisma.mediaLink.findMany({
       where: {
-        userId,
+        userId: id,
       },
       select: {
         id: true,

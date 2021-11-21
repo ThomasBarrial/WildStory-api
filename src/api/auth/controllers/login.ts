@@ -12,10 +12,9 @@ const login: AuthHandler['login'] = async (req, res, next) => {
         username,
       },
     });
-
     if (!user) {
       res.status(401);
-      throw new Error('User not found');
+      throw new Error('Unknow user');
     }
 
     if (!bcrypt.compareSync(password, user.password)) {
@@ -26,14 +25,18 @@ const login: AuthHandler['login'] = async (req, res, next) => {
     const { password: _pw, ...whithouPassword } = user;
 
     const token = jwt.sign(
-      { username: user.username },
-      process.env.SECRET as string
+      { username: user.username, userId: user.id, role: user.role },
+      process.env.SECRET as string,
+      { expiresIn: '24h' }
     );
 
     res.cookie('token', token, {
+      maxAge: 86_400_000,
       httpOnly: true,
-      secure: process.env.NODE_ENV !== 'development',
+      secure: false,
     });
+
+    res.set({ 'Access-Control-Allow-Credentials': true });
 
     return res.status(200).json(whithouPassword);
   } catch (e) {

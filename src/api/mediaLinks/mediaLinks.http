@@ -1,4 +1,4 @@
-GET http://localhost:5000/api/medialinks/user/f6db8373-553f-4900-a234-5ee99cd0426e
+GET http://localhost:5000/api/medialinks/user/1ce3c381-cf7f-42ca-b3ca-1cee2fcb4087
 
 ### 
 @contentType = application/json

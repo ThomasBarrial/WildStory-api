@@ -11,14 +11,14 @@ import {
 import { RequestHandler } from 'express';
 
 type IUserPost = Omit<User, 'id'>;
-type IUserPut = Omit<User, 'id' | 'password'>;
+type IUserPut = Omit<User, 'id' | 'password', 'createdAt', 'updatedAt'>;
 type IUserResponse = Omit<User, 'password', 'createdAt', 'updatedAt'>;
 
 interface UserHandlers {
   getAll: RequestHandler<Record<string, never>, IUserResponse[], null>;
   getOne: RequestHandler<{ id: string }, IUserResponse, null>;
   post: RequestHandler<Record<string, never>, IUserResponse | Error, IUserPost>;
-  put: RequestHandler<{ id: string }, null, IUserPut>;
+  put: RequestHandler<{ id: string }, IUserPut | APIError, IUserPut>;
   delete: RequestHandler<{ id: string }, null, null>;
 }
 
@@ -103,4 +103,9 @@ interface MediaLinkHandlers {
 interface IAuthBoby {
   username: string;
   password: string;
+}
+
+interface APIError {
+  type: string;
+  message: string;
 }

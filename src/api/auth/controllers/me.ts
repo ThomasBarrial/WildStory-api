@@ -1,12 +1,18 @@
-import { prisma } from '@prisma/prismaClient';
+import { prisma } from '../../../../prisma/prismaClient';
 import { AuthHandler } from '../interface';
+import { verify } from 'jsonwebtoken';
 
 const me: AuthHandler['me'] = async (req, res, next) => {
-  const id = req.cookies;
   try {
+    const jwtPayload = verify(req.cookies.token, process.env.SECRET as string);
+    if (typeof jwtPayload === 'string') {
+      return res
+        .status(401)
+        .json({ message: 'You need to login', type: 'LOGIN_ERROR' });
+    }
     const user = await prisma.user.findUnique({
       where: {
-        username: id,
+        id: jwtPayload.userId,
       },
       select: {
         id: true,
@@ -17,11 +23,9 @@ const me: AuthHandler['me'] = async (req, res, next) => {
         updatedAt: true,
       },
     });
-
     if (user) {
       return res.status(200).json(user);
     }
-
     res.status(401);
     throw new Error('Unknown user.');
   } catch (e) {

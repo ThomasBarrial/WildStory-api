@@ -1,5 +1,5 @@
+import { IAuthBoby, IUserResponse } from 'env';
 import { NextFunction, RequestHandler } from 'express';
-import { IAuthBoby, IUserResponse } from '../../../env';
 
 export interface AuthHandler {
   login: RequestHandler<
