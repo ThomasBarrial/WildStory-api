@@ -2,7 +2,7 @@ GET http://localhost:5000/api/users  HTTP/1.1
 
 ###
 
-GET http://localhost:5000/api/users/f9906d17-0d4d-4531-b838-3c2c18275503  HTTP/1.1
+GET http://localhost:5000/api/users/4e2c4d9b-8e94-4e00-86ca-cc64dc469e42 HTTP/1.1
 
 ###
 @contentType = application/json
@@ -47,3 +47,11 @@ DELETE http://localhost:5000/api/users/7c5c2914-da72-4fd8-83cc-2a3a52eefbce
 39a541a9-eb91-463b-ad40-a5108f736a38
 
 d6cda01c-9977-4059-8604-2de150bbf7c8
+###
+
+PUT http://localhost:5000/api/users/054579b5-233f-4c32-aee8-5165392b912b
+Content-Type: application/json
+
+{
+    "landimageUrl": "https://images.unsplash.com/photo-1599725055007-b33b6755ef6f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1329&q=80"
+}

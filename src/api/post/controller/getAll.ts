@@ -10,12 +10,6 @@ const getAll: PostHandlers['getAll'] = async (req, res, next) => {
         text: true,
         likes: true,
         imageUrl: true,
-        user: {
-          select: {
-            username: true,
-            avatarUrl: true,
-          },
-        },
         userId: true,
         comments: {
           select: {
