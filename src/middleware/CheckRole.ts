@@ -20,7 +20,6 @@ function checkRole(
         .json({ message: 'You need to login', type: 'LOGIN_ERROR' });
     }
 
-    console.log(jwtPayload);
     if (jwtPayload.role !== 'ADMIN') {
       throw new Error('Only administrators can acces this ressource');
     }

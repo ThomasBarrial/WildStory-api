@@ -1,11 +1,10 @@
 import { NextFunction, Response } from 'express';
 import jwt from 'jsonwebtoken';
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 function checkToken(req: any, res: Response, next: NextFunction): void {
   try {
     const { token } = req.cookies;
-
-    console.log(token);
 
     if (typeof token === 'undefined') {
       throw new Error('You need to login.');

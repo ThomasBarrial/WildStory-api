@@ -12,7 +12,6 @@ const editPassword: UserHandlers['editePassword'] = async (req, res, next) => {
         .json({ message: 'You need to login', type: 'LOGIN_ERROR' });
     }
     const { oldPassword, password } = req.body;
-    console.log(jwtPayload.userId);
 
     const oldUser = await prisma.user.findUnique({
       where: {
@@ -25,6 +24,7 @@ const editPassword: UserHandlers['editePassword'] = async (req, res, next) => {
 
     const comparePasswords = await bcrypt.compare(
       oldPassword,
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       oldUser!.password
     );
 

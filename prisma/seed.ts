@@ -37,7 +37,7 @@ const seed = async () => {
 
   // Create media Icons
   await Promise.all(
-    mediaIcons.map((m, i) => {
+    mediaIcons.map((m) => {
       return prisma.mediaIcon.create({
         data: {
           name: m.name,
@@ -49,7 +49,7 @@ const seed = async () => {
 
   // Create Skills
   await Promise.all(
-    skills.map((s, i) => {
+    skills.map((s) => {
       return prisma.skills.create({
         data: {
           name: s.name,
@@ -67,5 +67,4 @@ seed()
   })
   .finally(async () => {
     await prisma.$disconnect();
-    console.log('✅ All done !');
   });
