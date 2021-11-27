@@ -13,6 +13,10 @@ import { RequestHandler } from 'express';
 type IUserPost = Omit<User, 'id'>;
 type IUserPut = Omit<User, 'id' | 'password', 'createdAt', 'updatedAt'>;
 type IUserResponse = Omit<User, 'password', 'createdAt', 'updatedAt'>;
+interface IPassword {
+  oldPassword?: string;
+  password?: string;
+}
 
 interface UserHandlers {
   getAll: RequestHandler<Record<string, never>, IUserResponse[], null>;
@@ -20,6 +24,11 @@ interface UserHandlers {
   post: RequestHandler<Record<string, never>, IUserResponse | Error, IUserPost>;
   put: RequestHandler<{ id: string }, IUserPut | APIError, IUserPut>;
   delete: RequestHandler<{ id: string }, null, null>;
+  editePassword: RequestHandler<
+    { id: string },
+    IPassword | APIError,
+    IUserResponse
+  >;
 }
 
 type IFormation = Omit<Formation, 'id'>;

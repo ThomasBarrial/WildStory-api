@@ -17,6 +17,7 @@ const getAll: UserHandlers['getAll'] = async (req, res, next) => {
         updatedAt: true,
       },
     });
+
     return res.status(200).json(user);
   } catch (error) {
     return next(error);

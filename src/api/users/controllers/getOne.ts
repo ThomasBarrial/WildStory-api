@@ -12,6 +12,7 @@ const getOne: UserHandlers['getOne'] = async (req, res, next) => {
       select: {
         id: true,
         username: true,
+        profilTitle: true,
         email: true,
         city: true,
         birthDate: true,

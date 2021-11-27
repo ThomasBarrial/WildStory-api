@@ -21,7 +21,7 @@ const updateUser: UserHandlers['put'] = async (req, res, next) => {
         .status(401)
         .json({ message: 'You need to login', type: 'LOGIN_ERROR' });
     }
-    console.log(jwtPayload.role);
+
     if (jwtPayload.userId !== id && jwtPayload.role !== 'ADMIN') {
       return res.status(401).send({
         message: 'You cannot update an other user',
@@ -42,6 +42,7 @@ const updateUser: UserHandlers['put'] = async (req, res, next) => {
         landimageUrl,
       },
       select: {
+        id: true,
         username: true,
         profilTitle: true,
         role: true,
@@ -54,7 +55,7 @@ const updateUser: UserHandlers['put'] = async (req, res, next) => {
       },
     });
 
-    return res.status(204).json(user);
+    return res.status(200).json(user);
   } catch (error) {
     next(error);
   }
