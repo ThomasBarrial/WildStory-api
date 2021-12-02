@@ -2,7 +2,7 @@ import { prisma } from '../../../../prisma/prismaClient';
 import { LikesHandlers } from 'env';
 
 const createLike: LikesHandlers['post'] = async (req, res, next) => {
-  const { userId, postId, enable } = req.body;
+  const { userId, postId } = req.body;
 
   try {
     // Look for a like who already have the same user and post id
@@ -18,11 +18,9 @@ const createLike: LikesHandlers['post'] = async (req, res, next) => {
         data: {
           userId,
           postId,
-          enable,
         },
         select: {
           id: true,
-          enable: true,
           postId: true,
           userId: true,
         },

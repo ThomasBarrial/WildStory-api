@@ -117,7 +117,6 @@ model Likes {
   userId    String
   post      Post     @relation(fields: [postId], references: [id]) 
   postId    String
-  enable   Boolean  @default(true)
 }
 
 enum Role {
