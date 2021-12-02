@@ -82,6 +82,7 @@ interface PostHandlers {
   update: RequestHandler<Record<string, never>, IUserPosts>;
   delete: RequestHandler<Record<string, never>, Post>;
   getComments: RequestHandler<{ id: string }, Comment[]>;
+  getLikes: RequestHandler<{ id: string }, Likes[]>;
 }
 
 interface UserPostHandlers {
@@ -107,6 +108,12 @@ interface MediaLinkHandlers {
   post: RequestHandler<Record<string, never>, MediaLink>;
   update: RequestHandler<Record<string, never>, MediaLink>;
   delete: RequestHandler<Record<string, never>, MediaLink>;
+}
+
+interface LikesHandlers {
+  post: RequestHandler<Record<string, never>, Likes>;
+
+  delete: RequestHandler<Record<string, never>, Likes>;
 }
 
 interface IAuthBoby {
