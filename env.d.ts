@@ -112,7 +112,7 @@ interface MediaLinkHandlers {
 
 interface LikesHandlers {
   post: RequestHandler<Record<string, never>, Likes>;
-
+  update: RequestHandler<Record<string, never>, Likes>;
   delete: RequestHandler<Record<string, never>, Likes>;
 }
 
