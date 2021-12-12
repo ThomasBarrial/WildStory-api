@@ -6,6 +6,7 @@ import getOne from './controller/getOne';
 import updatePost from './controller/update';
 import deletePost from './controller/delete';
 import getComments from './controller/getComments';
+import getLikes from './controller/getLikes';
 
 const router = express.Router();
 
@@ -16,5 +17,6 @@ router.post('/', createPost);
 router.put('/:id', updatePost);
 router.delete('/:id', deletePost);
 router.get('/:id/comments', getComments);
+router.get('/:id/likes', getLikes);
 
 export default router;
