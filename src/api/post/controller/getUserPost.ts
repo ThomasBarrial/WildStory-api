@@ -9,6 +9,7 @@ const getUserPost: UserPostHandlers['getUserPost'] = async (req, res, next) => {
         userId,
       },
       select: {
+        id: true,
         title: true,
         text: true,
         imageUrl: true,
