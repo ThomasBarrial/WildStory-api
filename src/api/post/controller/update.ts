@@ -3,24 +3,30 @@ import { prisma } from '../../../../prisma/prismaClient';
 
 const updatePost: PostHandlers['update'] = async (req, res, next) => {
   const { id } = req.params;
-  const { text, imageUrl, topicsId } = req.body;
+  const { title, text, imageUrl } = req.body;
   try {
     await prisma.post.update({
       where: {
         id,
       },
       data: {
+        title,
         text,
         imageUrl,
-        topicsId,
       },
       select: {
+        title: true,
         text: true,
         imageUrl: true,
         likes: true,
         comments: {
           select: {
-            id: true,
+            text: true,
+            user: {
+              select: {
+                username: true,
+              },
+            },
           },
         },
         createdAt: true,

@@ -5,16 +5,12 @@ GET http://localhost:5000/api/formations
 GET http://localhost:5000/api/formations/6a7299b3-50fd-41ae-ae0f-ccf8986f9997
 
 ###
-
-GET http://localhost:5000/api/formations/users/3f755347-f90b-4152-b2c8-a98bb9ba8484
-
-###
 @contentType = application/json
 POST http://localhost:5000/api/formations
 Content-Type: {{contentType}}
 
 {
-    "formationName": "Cybersécurité"
+    "formationName": "Développement Web Remote"
 }
 
 ###

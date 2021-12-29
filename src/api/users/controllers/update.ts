@@ -13,7 +13,6 @@ const updateUser: UserHandlers['put'] = async (req, res, next) => {
     avatarUrl,
     landimageUrl,
     profilTitle,
-    idFormation,
   } = req.body;
   try {
     const jwtPayload = verify(req.cookies.token, process.env.SECRET as string);
@@ -41,7 +40,6 @@ const updateUser: UserHandlers['put'] = async (req, res, next) => {
         birthDate,
         avatarUrl,
         landimageUrl,
-        idFormation,
       },
       select: {
         id: true,

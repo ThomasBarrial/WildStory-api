@@ -6,14 +6,20 @@ const getAll: PostHandlers['getAll'] = async (req, res, next) => {
     const post = await prisma.post.findMany({
       select: {
         id: true,
+        title: true,
         text: true,
         likes: true,
         imageUrl: true,
         userId: true,
-        topicsId: true,
         comments: {
           select: {
-            id: true,
+            text: true,
+            user: {
+              select: {
+                username: true,
+                avatarUrl: true,
+              },
+            },
           },
         },
         createdAt: true,

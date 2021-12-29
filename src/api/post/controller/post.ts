@@ -2,26 +2,37 @@ import { PostHandlers } from 'env';
 import { prisma } from '../../../../prisma/prismaClient';
 
 const createPost: PostHandlers['post'] = async (req, res, next) => {
-  const { text, imageUrl, userId, topicsId } = req.body;
+  const { title, text, imageUrl, userId } = req.body;
 
   try {
     const post = await prisma.post.create({
       data: {
-        topicsId,
+        title,
         text,
         imageUrl,
         userId,
       },
       select: {
         id: true,
+        title: true,
         text: true,
         likes: true,
         imageUrl: true,
+        user: {
+          select: {
+            username: true,
+            avatarUrl: true,
+          },
+        },
         userId: true,
-        topicsId: true,
         comments: {
           select: {
-            id: true,
+            text: true,
+            user: {
+              select: {
+                username: true,
+              },
+            },
           },
         },
         createdAt: true,

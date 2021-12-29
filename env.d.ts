@@ -7,21 +7,12 @@ import {
   UserSkill,
   MediaIcon,
   MediaLink,
-  Topics,
 } from '.prisma/client';
 import { RequestHandler } from 'express';
 
 type IUserPost = Omit<User, 'id'>;
 type IUserPut = Omit<User, 'id' | 'password', 'createdAt', 'updatedAt'>;
 type IUserResponse = Omit<User, 'password', 'createdAt', 'updatedAt'>;
-type IUserFormation = Omit<
-  User,
-  'password',
-  'createdAt',
-  'updatedAt',
-  'email',
-  'role'
->;
 interface IPassword {
   oldPassword?: string;
   password?: string;
@@ -52,7 +43,6 @@ interface FormationHandlers {
   put: RequestHandler<{ id: string }, null, IFormation>;
   getOne: RequestHandler<{ id: string }, null, IFormation>;
   delete: RequestHandler<{ id: string }, null, null>;
-  getUsers: RequestHandler<Record<string, never>, { id: string }[]>;
 }
 
 type ISkills = Omit<Skills, 'id'>;
@@ -83,7 +73,7 @@ interface UserSkillsHandlers {
   delete: RequestHandler<{ id: string }, null, null>;
 }
 
-type ICreatePost = Omit<Post, 'id', 'comments', 'likes', 'user'>;
+type ICreatePost = Omit<Post, 'id', 'comments', 'likes'>;
 type IUserPosts = Omit<Post, 'id', 'userId'>;
 interface PostHandlers {
   getAll: RequestHandler<Record<string, never>, Post[]>;
@@ -124,13 +114,6 @@ interface LikesHandlers {
   post: RequestHandler<Record<string, never>, Likes>;
   update: RequestHandler<Record<string, never>, Likes>;
   delete: RequestHandler<Record<string, never>, Likes>;
-}
-
-interface TopicsHandlers {
-  getAll: RequestHandler<Record<string, never>, Topics[]>;
-  getOne: RequestHandler<Record<string, never>, Topics | null>;
-  getPosts: RequestHandler<Record<string, never>, Post[]>;
-  post: RequestHandler<Record<string, never>, Topics>;
 }
 
 interface IAuthBoby {
