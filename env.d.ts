@@ -13,6 +13,14 @@ import { RequestHandler } from 'express';
 type IUserPost = Omit<User, 'id'>;
 type IUserPut = Omit<User, 'id' | 'password', 'createdAt', 'updatedAt'>;
 type IUserResponse = Omit<User, 'password', 'createdAt', 'updatedAt'>;
+type IUserFormation = Omit<
+  User,
+  'password',
+  'createdAt',
+  'updatedAt',
+  'email',
+  'role'
+>;
 interface IPassword {
   oldPassword?: string;
   password?: string;
@@ -43,6 +51,7 @@ interface FormationHandlers {
   put: RequestHandler<{ id: string }, null, IFormation>;
   getOne: RequestHandler<{ id: string }, null, IFormation>;
   delete: RequestHandler<{ id: string }, null, null>;
+  getUsers: RequestHandler<Record<string, never>, { id: string }[]>;
 }
 
 type ISkills = Omit<Skills, 'id'>;
@@ -73,7 +82,7 @@ interface UserSkillsHandlers {
   delete: RequestHandler<{ id: string }, null, null>;
 }
 
-type ICreatePost = Omit<Post, 'id', 'comments', 'likes'>;
+type ICreatePost = Omit<Post, 'id', 'comments', 'likes', 'user'>;
 type IUserPosts = Omit<Post, 'id', 'userId'>;
 interface PostHandlers {
   getAll: RequestHandler<Record<string, never>, Post[]>;

@@ -29,6 +29,7 @@ model User {
   Likes        Likes[]
   comments     Comment[]
   mediaLink    MediaLink[]
+  postRegitser PostRegister[]
 
   @@map(name: "users")
 }
@@ -61,7 +62,6 @@ model MediaIcon {
 
 model Post {
   id        String    @id @default(uuid())
-  title     String
   text      String
   likes     Int?      @default(0)
   imageUrl  String[]  @map(name: "image_url")
@@ -71,6 +71,9 @@ model Post {
   userId    String
   Likes     Likes[]
   comments  Comment[]
+  topics    Topics    @relation(fields: [topicsId], references: [id])
+  topicsId  String
+  postRegister PostRegister[]
 
   @@map(name: "posts")
 }
@@ -112,13 +115,29 @@ model Comment {
 }
 
 model Likes {
-  id        String   @id @default(uuid())
-  user      User     @relation(fields: [userId], references: [id])
-  userId    String
-  post      Post     @relation(fields: [postId], references: [id]) 
-  postId    String
-  isLike    Boolean  @default(true)
+  id     String  @id @default(uuid())
+  user   User    @relation(fields: [userId], references: [id])
+  userId String
+  post   Post    @relation(fields: [postId], references: [id])
+  postId String
+  isLike Boolean @default(true)
 }
+
+model Topics {
+  id    String @id @default(uuid())
+  name  String
+  posts Post[]
+}
+
+
+model PostRegister {
+  id    String @id @default(uuid())
+  user   User    @relation(fields: [userId], references: [id])
+  userId String
+  post   Post    @relation(fields: [postId], references: [id])
+  postId String
+}
+
 
 enum Role {
   ADMIN
