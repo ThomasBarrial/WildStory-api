@@ -10,6 +10,7 @@ import mediaIcon from './mediaIcon/media.routes';
 import auth from './auth/auth.routes';
 import mediaLinks from './mediaLinks/medialink.routes';
 import likes from './likes/likes.routes';
+import topics from './topics/topics.routes';
 
 const router = express.Router();
 
@@ -29,5 +30,6 @@ router.use('/mediaicons', mediaIcon);
 router.use('/medialinks', mediaLinks);
 router.use('/auth', auth);
 router.use('/likes', likes);
+router.use('/topics', topics);
 
 export default router;
