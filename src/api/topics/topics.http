@@ -1,0 +1,17 @@
+GET http://localhost:5000/api/topics
+
+###
+
+GET http://localhost:5000/api/topics/posts/d089b54c-88fa-4f37-8cea-767239951851
+
+###
+
+GET http://localhost:5000/api/topics/d28aaa2e-346b-484e-973b-ea7c88957793
+###
+@contentType = application/json
+POST http://localhost:5000/api/topics
+Content-Type: {{contentType}}
+
+{
+    "topicsName": "#Code"
+}

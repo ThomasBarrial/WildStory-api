@@ -2,12 +2,12 @@ import { PostHandlers } from 'env';
 import { prisma } from '../../../../prisma/prismaClient';
 
 const createPost: PostHandlers['post'] = async (req, res, next) => {
-  const { text, imageUrl, userId, topics } = req.body;
+  const { text, imageUrl, userId, topicsId } = req.body;
 
   try {
     const post = await prisma.post.create({
       data: {
-        topics,
+        topicsId,
         text,
         imageUrl,
         userId,
@@ -18,6 +18,7 @@ const createPost: PostHandlers['post'] = async (req, res, next) => {
         likes: true,
         imageUrl: true,
         userId: true,
+        topicsId: true,
         comments: {
           select: {
             id: true,

@@ -7,6 +7,7 @@ import {
   UserSkill,
   MediaIcon,
   MediaLink,
+  Topics,
 } from '.prisma/client';
 import { RequestHandler } from 'express';
 
@@ -123,6 +124,13 @@ interface LikesHandlers {
   post: RequestHandler<Record<string, never>, Likes>;
   update: RequestHandler<Record<string, never>, Likes>;
   delete: RequestHandler<Record<string, never>, Likes>;
+}
+
+interface TopicsHandlers {
+  getAll: RequestHandler<Record<string, never>, Topics[]>;
+  getOne: RequestHandler<Record<string, never>, Topics | null>;
+  getPosts: RequestHandler<Record<string, never>, Post[]>;
+  post: RequestHandler<Record<string, never>, Topics>;
 }
 
 interface IAuthBoby {

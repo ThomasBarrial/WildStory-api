@@ -10,21 +10,21 @@ generator client {
 }
 
 model User {
-  id           String      @id @default(uuid())
-  username     String      @unique
-  email        String      @unique
+  id           String         @id @default(uuid())
+  username     String         @unique
+  email        String         @unique
   password     String
-  role         Role        @default(USER)
+  role         Role           @default(USER)
   profilTitle  String
   city         String?
   birthDate    String
-  avatarUrl    String?     @map(name: "avatar_url")
-  landimageUrl String?     @map(name: "landimage_url")
-  formation    Formation?  @relation(fields: [idFormation], references: [id])
+  avatarUrl    String?        @map(name: "avatar_url")
+  landimageUrl String?        @map(name: "landimage_url")
+  formation    Formation?     @relation(fields: [idFormation], references: [id])
   idFormation  String?
   posts        Post[]
-  createdAt    DateTime    @default(now())
-  updatedAt    DateTime    @default(now())
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @default(now())
   userSkills   UserSkill[]
   Likes        Likes[]
   comments     Comment[]
@@ -61,18 +61,18 @@ model MediaIcon {
 }
 
 model Post {
-  id        String    @id @default(uuid())
-  text      String
-  likes     Int?      @default(0)
-  imageUrl  String[]  @map(name: "image_url")
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @default(now())
-  user      User      @relation(fields: [userId], references: [id])
-  userId    String
-  Likes     Likes[]
-  comments  Comment[]
-  topics    Topics    @relation(fields: [topicsId], references: [id])
-  topicsId  String
+  id           String         @id @default(uuid())
+  text         String
+  likes        Int?           @default(0)
+  imageUrl     String[]       @map(name: "image_url")
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @default(now())
+  user         User           @relation(fields: [userId], references: [id])
+  userId       String
+  Likes        Likes[]
+  comments     Comment[]
+  topics       Topics         @relation(fields: [topicsId], references: [id])
+  topicsId     String
   postRegister PostRegister[]
 
   @@map(name: "posts")
@@ -124,20 +124,18 @@ model Likes {
 }
 
 model Topics {
-  id    String @id @default(uuid())
-  name  String
-  posts Post[]
+  id         String @id @default(uuid())
+  topicsName String @unique
+  posts      Post[]
 }
-
 
 model PostRegister {
-  id    String @id @default(uuid())
-  user   User    @relation(fields: [userId], references: [id])
+  id     String @id @default(uuid())
+  user   User   @relation(fields: [userId], references: [id])
   userId String
-  post   Post    @relation(fields: [postId], references: [id])
+  post   Post   @relation(fields: [postId], references: [id])
   postId String
 }
-
 
 enum Role {
   ADMIN

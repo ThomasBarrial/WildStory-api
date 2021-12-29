@@ -14,7 +14,7 @@ POST http://localhost:5000/api/formations
 Content-Type: {{contentType}}
 
 {
-    "formationName": "Développement Web Remote"
+    "formationName": "Cybersécurité"
 }
 
 ###
