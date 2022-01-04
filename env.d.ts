@@ -77,11 +77,15 @@ type IUserSkillsResponse = Omit<
 >;
 
 interface UserSkillsHandlers {
-  post: RequestHandler<Record<string, never>, IUserSkillsPost>;
+  post: RequestHandler<
+    Record<string, never>,
+    IUserSkillsPost | APIError,
+    IUserSkillsPost
+  >;
   getUserSkills: RequestHandler<Record<string, never>, IUserSkillsResponse[]>;
   getOne: RequestHandler<Record<string, never>, IUserResponse | null>;
   update: RequestHandler<{ id: string }, null, IUserSkillsPut>;
-  delete: RequestHandler<{ id: string }, null, null>;
+  delete: RequestHandler<{ id: string }, null | APIError, null>;
 }
 
 type ICreatePost = Omit<Post, 'id', 'comments', 'likes', 'user'>;
