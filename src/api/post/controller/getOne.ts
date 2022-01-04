@@ -15,6 +15,7 @@ const getOne: PostHandlers['getOne'] = async (req, res, next) => {
         imageUrl: true,
         userId: true,
         topicsId: true,
+        comments: true,
         createdAt: true,
         updatedAt: true,
       },

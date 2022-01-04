@@ -7,8 +7,8 @@ import checkToken from '../../middleware/checkToken';
 
 const router = express.Router();
 
-router.get('/', checkToken, getAll);
+router.get('/', getAll);
 router.post('/', checkToken, postComment);
-router.delete('/:id', checkToken, deleteComment);
+router.delete('/:id', deleteComment);
 
 export default router;

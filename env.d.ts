@@ -8,6 +8,7 @@ import {
   MediaIcon,
   MediaLink,
   Topics,
+  PostRegister,
 } from '.prisma/client';
 import { RequestHandler } from 'express';
 
@@ -103,6 +104,7 @@ interface CommentsHandlers {
   getAll: RequestHandler<Record<string, never>, Comment[]>;
   post: RequestHandler<Record<string, never>, Comment | null>;
   delete: RequestHandler<Record<string, never>, Comment>;
+  deleteMany: RequestHandler<Record<string, never>, Comment[]>;
 }
 
 interface MediaIconHandlers {
@@ -124,6 +126,7 @@ interface LikesHandlers {
   post: RequestHandler<Record<string, never>, Likes>;
   update: RequestHandler<Record<string, never>, Likes>;
   delete: RequestHandler<Record<string, never>, Likes>;
+  deleteMany: RequestHandler<Record<string, never>, Likes[]>;
 }
 
 interface TopicsHandlers {
@@ -131,6 +134,12 @@ interface TopicsHandlers {
   getOne: RequestHandler<Record<string, never>, Topics | null>;
   getPosts: RequestHandler<Record<string, never>, Post[]>;
   post: RequestHandler<Record<string, never>, Topics>;
+}
+
+interface postRegisterHandler {
+  post: RequestHandler<Record<string, never>, PostRegister>;
+  getUsersPostSaved: RequestHandler<Record<string, never>, PostRegister[]>;
+  delete: RequestHandler<Record<string, never>, PostRegister>;
 }
 
 interface IAuthBoby {

@@ -5,6 +5,16 @@ const deletePost: PostHandlers['delete'] = async (req, res, next) => {
   const { id } = req.params;
 
   try {
+    await prisma.likes.deleteMany({
+      where: {
+        postId: id,
+      },
+    });
+    await prisma.comment.deleteMany({
+      where: {
+        postId: id,
+      },
+    });
     await prisma.post.delete({
       where: {
         id,
