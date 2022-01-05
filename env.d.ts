@@ -119,11 +119,20 @@ interface MediaIconHandlers {
   delete: RequestHandler<Record<string, never>, MediaIcon>;
 }
 
+type IUserMediaLinkPost = Omit<MediaLink, 'id'>;
 interface MediaLinkHandlers {
   getUserMediaLinks: RequestHandler<Record<string, never>, MediaLink[]>;
-  post: RequestHandler<Record<string, never>, MediaLink>;
-  update: RequestHandler<Record<string, never>, MediaLink>;
-  delete: RequestHandler<Record<string, never>, MediaLink>;
+  post: RequestHandler<
+    Record<string, never>,
+    IUserMediaLinkPost | APIError,
+    IUserMediaLinkPost
+  >;
+  update: RequestHandler<
+    Record<string, never>,
+    MediaLink | APIError,
+    MediaLink
+  >;
+  delete: RequestHandler<Record<string, never>, APIError, MediaLink>;
 }
 
 interface LikesHandlers {

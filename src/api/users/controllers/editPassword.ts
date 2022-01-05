@@ -18,9 +18,17 @@ const editPassword: UserHandlers['editePassword'] = async (req, res, next) => {
         id: jwtPayload.userId,
       },
       select: {
+        id: true,
         password: true,
       },
     });
+
+    if (jwtPayload.userId !== oldUser?.id && jwtPayload.role !== 'ADMIN') {
+      return res.status(401).send({
+        message: 'You cannot update an other user',
+        type: 'ACCES_ERROR',
+      });
+    }
 
     const comparePasswords = await bcrypt.compare(
       oldPassword,
