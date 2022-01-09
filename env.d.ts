@@ -91,11 +91,11 @@ interface UserSkillsHandlers {
 type ICreatePost = Omit<Post, 'id', 'comments', 'likes', 'user'>;
 type IUserPosts = Omit<Post, 'id', 'userId'>;
 interface PostHandlers {
-  getAll: RequestHandler<Record<string, never>, Post[]>;
+  getAll: RequestHandler<Record<string, never>, Post[] | string>;
   getOne: RequestHandler<Record<string, never>, Post | null>;
   post: RequestHandler<Record<string, never>, ICreatePost>;
   update: RequestHandler<Record<string, never>, IUserPosts>;
-  delete: RequestHandler<Record<string, never>, Post>;
+  delete: RequestHandler<Record<string, never>, APIError, Post>;
   getComments: RequestHandler<{ id: string }, Comment[]>;
   getLikes: RequestHandler<{ id: string }, Likes[]>;
 }
@@ -106,8 +106,8 @@ interface UserPostHandlers {
 
 interface CommentsHandlers {
   getAll: RequestHandler<Record<string, never>, Comment[]>;
-  post: RequestHandler<Record<string, never>, Comment | null>;
-  delete: RequestHandler<Record<string, never>, Comment>;
+  post: RequestHandler<Record<string, never>, Comment | APIError, Comment>;
+  delete: RequestHandler<Record<string, never>, APIError, Comment>;
   deleteMany: RequestHandler<Record<string, never>, Comment[]>;
 }
 
@@ -138,7 +138,7 @@ interface MediaLinkHandlers {
 interface LikesHandlers {
   post: RequestHandler<Record<string, never>, Likes>;
   update: RequestHandler<Record<string, never>, Likes>;
-  delete: RequestHandler<Record<string, never>, Likes>;
+  delete: RequestHandler<Record<string, never>, APIError, Likes>;
   deleteMany: RequestHandler<Record<string, never>, Likes[]>;
 }
 
@@ -150,9 +150,13 @@ interface TopicsHandlers {
 }
 
 interface postRegisterHandler {
-  post: RequestHandler<Record<string, never>, PostRegister>;
+  post: RequestHandler<
+    Record<string, never>,
+    PostRegister | APIError,
+    PostRegister
+  >;
   getUsersPostSaved: RequestHandler<Record<string, never>, PostRegister[]>;
-  delete: RequestHandler<Record<string, never>, PostRegister>;
+  delete: RequestHandler<Record<string, never>, APIError, PostRegister>;
 }
 
 interface IAuthBoby {
