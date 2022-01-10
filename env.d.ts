@@ -50,7 +50,7 @@ interface FormationHandlers {
     Formation | Error,
     IFormationPost
   >;
-  put: RequestHandler<{ id: string }, null, IFormation>;
+  put: RequestHandler<{ id: string }, IFormation>;
   getOne: RequestHandler<{ id: string }, null, IFormation>;
   delete: RequestHandler<{ id: string }, null, null>;
   getUsers: RequestHandler<Record<string, never>, { id: string }[]>;
@@ -147,6 +147,8 @@ interface TopicsHandlers {
   getOne: RequestHandler<Record<string, never>, Topics | null>;
   getPosts: RequestHandler<Record<string, never>, Post[]>;
   post: RequestHandler<Record<string, never>, Topics>;
+  update: RequestHandler<Record<string, never>, Topics>;
+  delete: RequestHandler<Record<string, never>, APIError, Topics>;
 }
 
 interface postRegisterHandler {
