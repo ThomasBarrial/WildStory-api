@@ -1,16 +1,17 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { PostHandlers } from 'env';
 import { prisma } from '../../../../prisma/prismaClient';
 
 const getAll: PostHandlers['getAll'] = async (req, res, next) => {
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const limit = +req.query.limit!;
+  const offset = +req.query.offset!;
 
   try {
     const maxPost = await prisma.post.findMany();
     if (limit < maxPost.length) {
       const post = await prisma.post.findMany({
-        skip: limit || undefined,
-        take: 15,
+        skip: offset || undefined,
+        take: limit || undefined,
         select: {
           id: true,
           text: true,
