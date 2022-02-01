@@ -18,6 +18,7 @@ const me: AuthHandler['me'] = async (req, res, next) => {
         id: true,
         username: true,
         email: true,
+        landimageUrl: true,
         avatarUrl: true,
         createdAt: true,
         updatedAt: true,

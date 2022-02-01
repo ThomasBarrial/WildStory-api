@@ -12,6 +12,7 @@ import mediaLinks from './mediaLinks/medialink.routes';
 import likes from './likes/likes.routes';
 import topics from './topics/topics.routes';
 import savePost from './savePost/savePoste.routes';
+import follows from './follows/follows.routes';
 
 const router = express.Router();
 
@@ -33,5 +34,6 @@ router.use('/auth', auth);
 router.use('/likes', likes);
 router.use('/topics', topics);
 router.use('/savepost', savePost);
+router.use('/follows', follows);
 
 export default router;
