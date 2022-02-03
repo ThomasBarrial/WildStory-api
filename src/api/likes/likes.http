@@ -10,7 +10,7 @@ Content-Type: {{contentType}}
 
 ###
 
-GET http://localhost:5000/api/post/530972f5-c9a0-42af-83c1-7d6fa705c0c1/likes
+GET http://localhost:5000/api/post/bcd06acc-4b7b-4c92-aeea-74b10e79cdcd/likes
 
 
 ### 

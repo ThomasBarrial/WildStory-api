@@ -12,7 +12,6 @@ const getAll: TopicsHandlers['getPosts'] = async (req, res, next) => {
       select: {
         id: true,
         text: true,
-        likes: true,
         comments: true,
         imageUrl: true,
         postRegister: true,

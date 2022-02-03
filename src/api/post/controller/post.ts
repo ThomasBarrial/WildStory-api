@@ -29,7 +29,6 @@ const createPost: PostHandlers['post'] = async (req, res, next) => {
       select: {
         id: true,
         text: true,
-        likes: true,
         imageUrl: true,
         userId: true,
         topicsId: true,

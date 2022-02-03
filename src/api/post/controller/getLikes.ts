@@ -10,7 +10,8 @@ const getLikes: PostHandlers['getLikes'] = async (req, res, next) => {
           id,
         },
       })
-      .Likes();
+      .likes();
+
     res.status(200).json(postLikes);
   } catch (err) {
     next(err);

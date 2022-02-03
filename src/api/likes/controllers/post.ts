@@ -37,6 +37,7 @@ const createLike: LikesHandlers['post'] = async (req, res, next) => {
           id: true,
           postId: true,
           userId: true,
+          isLike: true,
         },
       });
       await prisma.$disconnect();

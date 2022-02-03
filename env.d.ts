@@ -8,6 +8,7 @@ import {
   MediaIcon,
   MediaLink,
   Topics,
+  Likes,
   PostRegister,
 } from '.prisma/client';
 import { RequestHandler } from 'express';
@@ -97,7 +98,7 @@ interface PostHandlers {
   update: RequestHandler<Record<string, never>, IUserPosts>;
   delete: RequestHandler<Record<string, never>, APIError, Post>;
   getComments: RequestHandler<{ id: string }, Comment[]>;
-  getLikes: RequestHandler<{ id: string }, Likes[]>;
+  getLikes: RequestHandler<{ id: string }, Likes[] | null>;
 }
 
 interface UserPostHandlers {
@@ -136,8 +137,8 @@ interface MediaLinkHandlers {
 }
 
 interface LikesHandlers {
-  post: RequestHandler<Record<string, never>, Likes>;
-  update: RequestHandler<Record<string, never>, Likes>;
+  post: RequestHandler<Record<string, never>, Likes | APIError, Likes>;
+  update: RequestHandler<Record<string, never>, Likes | APIError, Likes>;
   delete: RequestHandler<Record<string, never>, APIError, Likes>;
   deleteMany: RequestHandler<Record<string, never>, Likes[]>;
 }

@@ -26,7 +26,7 @@ model User {
   createdAt    DateTime       @default(now())
   updatedAt    DateTime       @default(now())
   userSkills   UserSkill[]
-  Likes        Likes[]
+  likes        Likes[]
   comments     Comment[]
   followers    Follows[]      @relation("follower")
   following    Follows[]      @relation("following")
@@ -65,13 +65,12 @@ model MediaIcon {
 model Post {
   id           String         @id @default(uuid())
   text         String
-  likes        Int?           @default(0)
   imageUrl     String[]       @map(name: "image_url")
   createdAt    DateTime       @default(now())
   updatedAt    DateTime       @default(now())
   user         User           @relation(fields: [userId], references: [id])
   userId       String
-  Likes        Likes[]
+  likes        Likes[]
   comments     Comment[]
   topics       Topics         @relation(fields: [topicsId], references: [id])
   topicsId     String
@@ -139,9 +138,8 @@ model PostRegister {
   postId String
 }
 
-
 model Follows {
-  id        String @id @default(uuid())
+  id          String @id @default(uuid())
   follower    User   @relation("follower", fields: [followerId], references: [id])
   followerId  String
   following   User   @relation("following", fields: [followingId], references: [id])

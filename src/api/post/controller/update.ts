@@ -40,7 +40,6 @@ const updatePost: PostHandlers['update'] = async (req, res, next) => {
       select: {
         text: true,
         imageUrl: true,
-        likes: true,
         comments: {
           select: {
             id: true,
