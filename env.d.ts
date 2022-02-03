@@ -161,6 +161,13 @@ interface postRegisterHandler {
   delete: RequestHandler<Record<string, never>, APIError, PostRegister>;
 }
 
+interface followsHandler {
+  post: RequestHandler<Record<string, never>, Follows | APIError, Follows>;
+  getUserFollowers: RequestHandler<Record<string, never>, Follows[]>;
+  getUserFollowing: RequestHandler<Record<string, never>, Follows[]>;
+  delete: RequestHandler<Record<string, never>, APIError>;
+}
+
 interface IAuthBoby {
   username: string;
   password: string;

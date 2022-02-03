@@ -1,5 +1,4 @@
 import express from 'express';
-
 import getAll from './controllers/getAll';
 import getUsers from './controllers/getFormationUsers';
 import getOne from './controllers/getOne';

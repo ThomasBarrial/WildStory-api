@@ -7,34 +7,29 @@ const getAll: PostHandlers['getAll'] = async (req, res, next) => {
   const offset = +req.query.offset!;
 
   try {
-    const maxPost = await prisma.post.findMany();
-    if (limit < maxPost.length) {
-      const post = await prisma.post.findMany({
-        skip: offset || undefined,
-        take: limit || undefined,
-        select: {
-          id: true,
-          text: true,
-          likes: true,
-          imageUrl: true,
-          userId: true,
-          topicsId: true,
-          comments: {
-            select: {
-              id: true,
-            },
+    const post = await prisma.post.findMany({
+      skip: offset || undefined,
+      take: limit || undefined,
+      select: {
+        id: true,
+        text: true,
+        likes: true,
+        imageUrl: true,
+        userId: true,
+        topicsId: true,
+        comments: {
+          select: {
+            id: true,
           },
-          createdAt: true,
-          updatedAt: true,
         },
-        orderBy: {
-          createdAt: 'desc',
-        },
-      });
-      return res.status(200).json(post);
-    } else {
-      return res.send('no more post');
-    }
+        createdAt: true,
+        updatedAt: true,
+      },
+      orderBy: {
+        createdAt: 'desc',
+      },
+    });
+    return res.status(200).json(post);
   } catch (e) {
     return next(e);
   }

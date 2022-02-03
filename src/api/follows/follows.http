@@ -1,0 +1,23 @@
+@contentType = application/json
+
+POST http://localhost:5000/api/follows
+Content-Type: {{contentType}}
+
+{
+    "followerId": "fe896be5-d3b6-404b-b9e5-e92c0b5ffced",
+    "followingId": "f917ab77-7e47-441d-be46-27801a443442"
+}
+
+
+###
+
+GET  http://localhost:5000/api/follows/followers/f917ab77-7e47-441d-be46-27801a443442
+
+
+###
+
+GET  http://localhost:5000/api/follows/followings/fe896be5-d3b6-404b-b9e5-e92c0b5ffced
+
+### 
+
+DELETE http://localhost:5000/api/follows/bdf53f36-d106-4bc0-b33e-b889a4ab31d1
