@@ -32,8 +32,7 @@ model User {
   following    Follows[]      @relation("following")
   mediaLink    MediaLink[]
   postRegitser PostRegister[]
-
-
+  Message      Message[]      @relation("message")
 }
 
 model Formation {
@@ -144,6 +143,22 @@ model Follows {
   followerId  String
   following   User   @relation("following", fields: [followingId], references: [id])
   followingId String
+}
+
+model Conversation {
+  id      String    @id @default(uuid())
+  members  String[]
+  message Message[] @relation("conversation")
+}
+
+model Message {
+  id             String       @id @default(uuid())
+  conversation   Conversation @relation("conversation", fields: [conversationId], references: [id])
+  conversationId String
+  user           User         @relation("message", fields: [senderId], references: [id])
+  senderId       String
+  text           String
+  createdAt      DateTime @default(now())
 }
 
 enum Role {

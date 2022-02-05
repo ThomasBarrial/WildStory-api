@@ -17,7 +17,10 @@ const deleteFollow: followsHandler['delete'] = async (req, res, next) => {
         .json({ message: 'You need to login', type: 'LOGIN_ERROR' });
     }
 
-    if (jwtPayload.userId !== follow?.followerId) {
+    if (
+      jwtPayload.userId !== follow?.followerId &&
+      jwtPayload.userId !== follow?.followingId
+    ) {
       return res.status(401).send({
         message: 'You cannot do this for an other user',
         type: 'ACCES_ERROR',
