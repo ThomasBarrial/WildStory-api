@@ -37,7 +37,6 @@ const getUser = (userId: string) => {
 
 io.on('connection', (socket) => {
   //when connect
-  console.log('a user connected');
   // take userId and socketId from user
   socket.on('addUser', (userId) => {
     addUser(userId, socket.id);
@@ -45,27 +44,20 @@ io.on('connection', (socket) => {
   });
 
   // send and get message
-  socket.on('sendMessage', ({ senderId, receiverId, text }) => {
+  socket.on('sendMessage', ({ receiverId, text, senderId, conversationId }) => {
     const user = getUser(receiverId);
     io.to(user?.socketId as string).emit('getMessage', {
-      senderId,
       text,
+      senderId,
+      conversationId,
     });
   });
 
   // when disconnect
   socket.on('disconnect', () => {
-    console.log('a user disconnect');
     removeUser(socket.id);
     io.emit('getUsers', users);
   });
-
-  // socket.on('join', ({ roomName, user }) => {
-  //   createConversation({ roomName, user, socket });
-  // });
-  // socket.on('sendMessage', ({ senderId, receiverId }) => {
-  //   sendMessage(senderId, recevierId);
-  // });
 });
 
 server.listen(port, async () => {
