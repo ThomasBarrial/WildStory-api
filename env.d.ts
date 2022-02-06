@@ -178,6 +178,11 @@ interface ConversationHandler {
   getUserConversations: RequestHandler<Record<string, never>, Conversation[]>;
 }
 
+interface MessagesHandler {
+  post: RequestHandler<Record<string, never>, Message | APIError, Message>;
+  getConversationMessages: RequestHandler<Record<string, never>, Message[]>;
+}
+
 interface IAuthBoby {
   username: string;
   password: string;

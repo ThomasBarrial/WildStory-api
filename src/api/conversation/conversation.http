@@ -3,10 +3,11 @@ POST http://localhost:5000/api/conversation
 Content-Type: {{contentType}}
 
 {
-    "members": ["f917ab77-7e47-441d-be46-27801a443442", "fe896be5-d3b6-404b-b9e5-e92c0b5ffced"]
+    "senderId": "fe896be5-d3b6-404b-b9e5-e92c0b5ffced",
+    "receiverId": "fda721e2-7afb-4011-aa07-528177d2b52a"
 }
 
 
 ###
 
-GET http://localhost:5000/api/conversation/f917ab77-7e47-441d-be46-27801a443442
+GET http://localhost:5000/api/conversation/fe896be5-d3b6-404b-b9e5-e92c0b5ffced

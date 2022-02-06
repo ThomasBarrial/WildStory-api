@@ -6,12 +6,14 @@ const createConversation: ConversationHandler['post'] = async (
   res,
   next
 ) => {
-  const { members } = req.body;
-  console.log(req.body);
+  const { senderId, receiverId } = req.body;
+
   try {
     const conversation = await prisma.conversation.create({
       data: {
-        members: members,
+        members: {
+          connect: [{ id: senderId }, { id: receiverId }],
+        },
       },
       select: {
         id: true,

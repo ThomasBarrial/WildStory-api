@@ -14,6 +14,7 @@ import topics from './topics/topics.routes';
 import savePost from './savePost/savePoste.routes';
 import follows from './follows/follows.routes';
 import conversation from './conversation/conversation.routes';
+import messages from './message/message.routes';
 
 const router = express.Router();
 
@@ -37,5 +38,6 @@ router.use('/topics', topics);
 router.use('/savepost', savePost);
 router.use('/follows', follows);
 router.use('/conversation', conversation);
+router.use('/message', messages);
 
 export default router;

@@ -8,7 +8,15 @@ const getUserConversations: ConversationHandler['getUserConversations'] =
     try {
       const conversations = await prisma.conversation.findMany({
         where: {
-          members: { connect: { user: id } },
+          members: {
+            some: {
+              id,
+            },
+          },
+        },
+        select: {
+          id: true,
+          members: true,
         },
       });
 

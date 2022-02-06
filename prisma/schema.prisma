@@ -31,6 +31,7 @@ model User {
   followers    Follows[]      @relation("follower")
   following    Follows[]      @relation("following")
   mediaLink    MediaLink[]
+  conversations Conversation[]
   postRegitser PostRegister[]
   Message      Message[]      @relation("message")
 }
@@ -147,7 +148,7 @@ model Follows {
 
 model Conversation {
   id      String    @id @default(uuid())
-  members  String[]
+  members   User[]
   message Message[] @relation("conversation")
 }
 
