@@ -169,6 +169,20 @@ interface followsHandler {
   delete: RequestHandler<Record<string, never>, APIError>;
 }
 
+interface ConversationHandler {
+  post: RequestHandler<
+    Record<string, never>,
+    Conversation | APIError,
+    Conversation
+  >;
+  getUserConversations: RequestHandler<Record<string, never>, Conversation[]>;
+}
+
+interface MessagesHandler {
+  post: RequestHandler<Record<string, never>, Message | APIError, Message>;
+  getConversationMessages: RequestHandler<Record<string, never>, Message[]>;
+}
+
 interface IAuthBoby {
   username: string;
   password: string;
