@@ -43,6 +43,13 @@ io.on('connection', (socket) => {
     io.emit('getUsers', users);
   });
 
+  // send new conversation
+  socket.on('createConversation', ({ receiverId }) => {
+    console.log(receiverId);
+    const user = getUser(receiverId);
+    io.to(user?.socketId as string).emit('getConversation');
+  });
+
   // send and get message
   socket.on('sendMessage', ({ receiverId, text, senderId, conversationId }) => {
     const user = getUser(receiverId);

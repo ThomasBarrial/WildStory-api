@@ -7,6 +7,6 @@ import getConversationMessages from './controllers/getConversationMessages';
 const router = express.Router();
 
 router.post('/', checkToken, post);
-router.get('/conversation/:id', getConversationMessages);
+router.get('/conversation/:id', checkToken, getConversationMessages);
 
 export default router;

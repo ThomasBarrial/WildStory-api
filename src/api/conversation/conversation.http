@@ -10,4 +10,9 @@ Content-Type: {{contentType}}
 
 ###
 
-GET http://localhost:5000/api/conversation/fe896be5-d3b6-404b-b9e5-e92c0b5ffced
+GET http://localhost:5000/api/conversation/f917ab77-7e47-441d-be46-27801a443442
+
+
+###
+
+DELETE  http://localhost:5000/api/conversation/5513f235-2039-45ff-9075-c1f1aa3b1fac
