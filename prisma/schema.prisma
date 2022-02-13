@@ -10,30 +10,30 @@ generator client {
 }
 
 model User {
-  id           String         @id @default(uuid())
-  username     String         @unique
-  email        String         @unique
-  password     String
-  role         Role           @default(USER)
-  profilTitle  String
-  city         String?
-  birthDate    String
-  avatarUrl    String?        @map(name: "avatar_url")
-  landimageUrl String?        @map(name: "landimage_url")
-  formation    Formation?     @relation(fields: [idFormation], references: [id])
-  idFormation  String?
-  posts        Post[]
-  createdAt    DateTime       @default(now())
-  updatedAt    DateTime       @default(now())
-  userSkills   UserSkill[]
-  likes        Likes[]
-  comments     Comment[]
-  followers    Follows[]      @relation("follower")
-  following    Follows[]      @relation("following")
-  mediaLink    MediaLink[]
+  id            String         @id @default(uuid())
+  username      String         @unique
+  email         String         @unique
+  password      String
+  role          Role           @default(USER)
+  profilTitle   String
+  city          String?
+  birthDate     String
+  avatarUrl     String?        @map(name: "avatar_url")
+  landimageUrl  String?        @map(name: "landimage_url")
+  formation     Formation?     @relation(fields: [idFormation], references: [id])
+  idFormation   String?
+  posts         Post[]
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @default(now())
+  userSkills    UserSkill[]
+  likes         Likes[]
+  comments      Comment[]
+  followers     Follows[]      @relation("follower")
+  following     Follows[]      @relation("following")
+  mediaLink     MediaLink[]
   conversations Conversation[]
-  postRegitser PostRegister[]
-  Message      Message[]      @relation("message")
+  postRegitser  PostRegister[]
+  Message       Message[]      @relation("message")
 }
 
 model Formation {
@@ -147,9 +147,13 @@ model Follows {
 }
 
 model Conversation {
-  id      String    @id @default(uuid())
-  members   User[]
-  message Message[] @relation("conversation")
+  id           String    @id @default(uuid())
+  members      User[]
+  message      Message[] @relation("conversation")
+  createdAt    DateTime  @default(now())
+  user1Id      String
+  user2Id      String
+  isNewMessage String   @default("")
 }
 
 model Message {
@@ -159,7 +163,7 @@ model Message {
   user           User         @relation("message", fields: [senderId], references: [id])
   senderId       String
   text           String
-  createdAt      DateTime @default(now())
+  createdAt      DateTime     @default(now())
 }
 
 enum Role {

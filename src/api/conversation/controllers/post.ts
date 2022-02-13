@@ -9,18 +9,45 @@ const createConversation: ConversationHandler['post'] = async (
   const { senderId, receiverId } = req.body;
 
   try {
-    const conversation = await prisma.conversation.create({
-      data: {
-        members: {
-          connect: [{ id: senderId }, { id: receiverId }],
-        },
-      },
-      select: {
-        id: true,
-        members: true,
+    const checkConversation = await prisma.conversation.findFirst({
+      where: {
+        AND: [
+          {
+            members: {
+              some: {
+                id: senderId,
+              },
+            },
+          },
+          {
+            members: {
+              some: {
+                id: receiverId,
+              },
+            },
+          },
+        ],
       },
     });
-    res.status(201).json(conversation);
+
+    if (checkConversation) {
+      res.status(500).json('This conversation already exist');
+    } else {
+      const conversation = await prisma.conversation.create({
+        data: {
+          user1Id: senderId,
+          user2Id: receiverId,
+          members: {
+            connect: [{ id: senderId }, { id: receiverId }],
+          },
+        },
+        select: {
+          id: true,
+          members: true,
+        },
+      });
+      res.status(201).json(conversation);
+    }
   } catch (error) {
     next(error);
   }

@@ -19,7 +19,17 @@ const createMessage: MessagesHandler['post'] = async (req, res, next) => {
         createdAt: true,
       },
     });
-    res.status(201).json(Messsage);
+
+    if (Messsage.text === '') {
+      await prisma.message.delete({
+        where: {
+          id: Messsage.id,
+        },
+      });
+      res.status(204).json('empty message');
+    } else {
+      res.status(201).json(Messsage);
+    }
   } catch (error) {
     next(error);
   }
