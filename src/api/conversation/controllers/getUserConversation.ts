@@ -17,6 +17,12 @@ const getUserConversations: ConversationHandler['getUserConversations'] =
         select: {
           id: true,
           members: true,
+          user1Id: true,
+          user2Id: true,
+          isNewMessage: true,
+        },
+        orderBy: {
+          createdAt: 'desc',
         },
       });
 

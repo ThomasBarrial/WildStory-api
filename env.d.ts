@@ -176,6 +176,8 @@ interface ConversationHandler {
     Conversation
   >;
   getUserConversations: RequestHandler<Record<string, never>, Conversation[]>;
+  delete: RequestHandler<Record<string, never>, APIError>;
+  update: RequestHandler<Record<string, never>, Conversation>;
 }
 
 interface MessagesHandler {

@@ -1,4 +1,4 @@
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient, Role } from '@prisma/client';
 import bcrypt from 'bcrypt';
 
 const prisma = new PrismaClient();
@@ -57,7 +57,7 @@ const seed = async () => {
 
   const formations = [
     {
-      formationName: 'Développement BlockChain',
+      formationName: 'BlockChain',
     },
     {
       formationName: 'Cybersécurité',
@@ -93,12 +93,13 @@ const seed = async () => {
 
   const users = [
     {
-      username: 'Admin',
+      username: 'ThomasBarrial',
       profilTitle: 'WildStory Administrator',
       email: 'admin@gmail.com',
       password: bcrypt.hashSync('Thomas64', 10),
       city: 'Paris',
       birthDate: '06/10/95',
+      role: 'ADMIN',
       avatarUrl:
         'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80',
       landimageUrl:
@@ -165,7 +166,7 @@ const seed = async () => {
           avatarUrl: u.avatarUrl,
           landimageUrl: u.landimageUrl,
           idFormation: null,
-          role: 'ADMIN',
+          role: u.role as Role,
         },
       });
     })
