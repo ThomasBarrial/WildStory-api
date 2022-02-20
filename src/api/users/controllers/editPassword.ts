@@ -1,0 +1,60 @@
+import { prisma } from '../../../../prisma/prismaClient';
+import { UserHandlers } from 'env';
+import { verify } from 'jsonwebtoken';
+import bcrypt from 'bcrypt';
+
+const editPassword: UserHandlers['editePassword'] = async (req, res, next) => {
+  try {
+    const jwtPayload = verify(req.cookies.token, process.env.SECRET as string);
+    if (typeof jwtPayload === 'string') {
+      return res
+        .status(401)
+        .json({ message: 'You need to login', type: 'LOGIN_ERROR' });
+    }
+    const { oldPassword, password } = req.body;
+
+    const oldUser = await prisma.user.findUnique({
+      where: {
+        id: jwtPayload.userId,
+      },
+      select: {
+        id: true,
+        password: true,
+      },
+    });
+
+    if (jwtPayload.userId !== oldUser?.id && jwtPayload.role !== 'ADMIN') {
+      return res.status(401).send({
+        message: 'You cannot update an other user',
+        type: 'ACCES_ERROR',
+      });
+    }
+
+    const comparePasswords = await bcrypt.compare(
+      oldPassword,
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      oldUser!.password
+    );
+
+    if (!comparePasswords) {
+      res.status(422);
+
+      throw new Error('Old password is incorrect.');
+    }
+
+    const newUser = await prisma.user.update({
+      where: {
+        id: jwtPayload.userId,
+      },
+      data: {
+        password: await bcrypt.hash(password, 10),
+      },
+    });
+
+    res.status(200).json(newUser);
+  } catch (e) {
+    next(e);
+  }
+};
+
+export default editPassword;

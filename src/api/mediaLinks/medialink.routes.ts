@@ -4,12 +4,13 @@ import post from './controllers/post';
 import userMediaLink from './controllers/getUsersMediaLinks';
 import update from './controllers/update';
 import _delete from './controllers/delete';
+import checkToken from '../../middleware/checkToken';
 
 const router = express.Router();
 
-router.post('/', post);
+router.post('/', checkToken, post);
 router.get('/user/:id', userMediaLink);
-router.put('/:id', update);
-router.delete('/:id', _delete);
+router.put('/:id', checkToken, update);
+router.delete('/:id', checkToken, _delete);
 
 export default router;

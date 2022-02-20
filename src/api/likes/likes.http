@@ -1,0 +1,18 @@
+@contentType = application/json
+POST http://localhost:5000/api/likes
+Content-Type: {{contentType}}
+
+{
+    "userId": "1ce3c381-cf7f-42ca-b3ca-1cee2fcb4087",
+    "postId": "f6a58bbe-3cb6-4d5b-be99-dfe396d07341"
+}
+
+
+###
+
+GET http://localhost:5000/api/post/bcd06acc-4b7b-4c92-aeea-74b10e79cdcd/likes
+
+
+### 
+
+DELETE  http://localhost:5000/api/likes/470368df-151a-4f7c-bab8-42d07e157c1f

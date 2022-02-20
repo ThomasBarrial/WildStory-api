@@ -5,7 +5,7 @@ const updateFormation: FormationHandlers['put'] = async (req, res, next) => {
   const { id } = req.params;
   const { formationName } = req.body;
   try {
-    await prisma.formation.update({
+    const formation = await prisma.formation.update({
       where: {
         id,
       },
@@ -19,7 +19,7 @@ const updateFormation: FormationHandlers['put'] = async (req, res, next) => {
         updatedAt: true,
       },
     });
-    res.sendStatus(204);
+    res.sendStatus(204).json(formation);
   } catch (error) {
     next(error);
   }

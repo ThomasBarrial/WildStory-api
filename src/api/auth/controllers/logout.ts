@@ -5,7 +5,7 @@ const logout: AuthHandler['logout'] = (req, res, next) => {
     if (!req.cookies?.token) {
       return res.status(403).json({ message: 'User not logged out. ' });
     }
-    res.clearCookie('token');
+    res.clearCookie('token').json({ message: 'user logout ' });
   } catch (e) {
     res.status(400);
     return next(e);

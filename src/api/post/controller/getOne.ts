@@ -10,11 +10,11 @@ const getOne: PostHandlers['getOne'] = async (req, res, next) => {
       },
       select: {
         id: true,
-        title: true,
         text: true,
-        likes: true,
         imageUrl: true,
         userId: true,
+        topicsId: true,
+        comments: true,
         createdAt: true,
         updatedAt: true,
       },

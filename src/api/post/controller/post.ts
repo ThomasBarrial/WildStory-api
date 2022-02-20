@@ -1,38 +1,40 @@
 import { PostHandlers } from 'env';
 import { prisma } from '../../../../prisma/prismaClient';
+import { verify } from 'jsonwebtoken';
 
 const createPost: PostHandlers['post'] = async (req, res, next) => {
-  const { title, text, imageUrl, userId } = req.body;
+  const { text, imageUrl, userId, topicsId } = req.body;
 
   try {
+    const jwtPayload = verify(req.cookies.token, process.env.SECRET as string);
+    if (typeof jwtPayload === 'string') {
+      return res
+        .status(401)
+        .json({ message: 'You need to login', type: 'LOGIN_ERROR' });
+    }
+
+    if (jwtPayload.userId !== userId && jwtPayload.role !== 'ADMIN') {
+      return res.status(401).send({
+        message: 'You cannot create this for an other user',
+        type: 'ACCES_ERROR',
+      });
+    }
     const post = await prisma.post.create({
       data: {
-        title,
+        topicsId,
         text,
         imageUrl,
         userId,
       },
       select: {
         id: true,
-        title: true,
         text: true,
-        likes: true,
         imageUrl: true,
-        user: {
-          select: {
-            username: true,
-            avatarUrl: true,
-          },
-        },
         userId: true,
+        topicsId: true,
         comments: {
           select: {
-            text: true,
-            user: {
-              select: {
-                username: true,
-              },
-            },
+            id: true,
           },
         },
         createdAt: true,

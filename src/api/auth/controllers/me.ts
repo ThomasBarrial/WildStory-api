@@ -2,9 +2,10 @@ import { prisma } from '../../../../prisma/prismaClient';
 import { AuthHandler } from '../interface';
 import { verify } from 'jsonwebtoken';
 
-const me: AuthHandler['me'] = async (req, res, next) => {
+const me: AuthHandler['me'] = async (req, res) => {
   try {
     const jwtPayload = verify(req.cookies.token, process.env.SECRET as string);
+
     if (typeof jwtPayload === 'string') {
       return res
         .status(401)
@@ -18,6 +19,7 @@ const me: AuthHandler['me'] = async (req, res, next) => {
         id: true,
         username: true,
         email: true,
+        landimageUrl: true,
         avatarUrl: true,
         createdAt: true,
         updatedAt: true,
@@ -29,7 +31,8 @@ const me: AuthHandler['me'] = async (req, res, next) => {
     res.status(401);
     throw new Error('Unknown user.');
   } catch (e) {
-    return next(e);
+    ('');
+    return res.status(401).json('you need to log');
   }
 };
 
