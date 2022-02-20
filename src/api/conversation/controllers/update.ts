@@ -9,7 +9,7 @@ const updateConversation: ConversationHandler['update'] = async (
   const { id } = req.params;
   const { isNewMessage } = req.body;
   try {
-    const topics = await prisma.conversation.update({
+    const conversation = await prisma.conversation.update({
       where: {
         id,
       },
@@ -21,7 +21,7 @@ const updateConversation: ConversationHandler['update'] = async (
         members: true,
       },
     });
-    res.sendStatus(204).json(topics);
+    res.status(204).json(conversation);
   } catch (error) {
     next(error);
   }
