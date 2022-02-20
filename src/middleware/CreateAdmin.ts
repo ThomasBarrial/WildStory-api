@@ -1,8 +1,7 @@
 import { prisma } from '../../prisma/prismaClient';
 import bcrypt from 'bcrypt';
-import { UserHandlers } from 'env';
 
-const createAdmin: UserHandlers['post'] = async () => {
+const createAdmin = async (): Promise<void> => {
   const user = await prisma.user.findUnique({
     where: {
       email: process.env.USER_EMAIL,
