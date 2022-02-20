@@ -3,8 +3,7 @@ import app from './app';
 import http from 'http';
 const server = http.createServer(app);
 import { Server } from 'socket.io';
-import { prisma } from '../prisma/prismaClient';
-import bcrypt from 'bcrypt';
+import createAdmin from './middleware/CreateAdmin';
 
 // import createConversation from './api/conversation/controllers/create';
 const io = new Server(server, {
@@ -21,6 +20,8 @@ const io = new Server(server, {
 dotenv.config();
 
 const port = process.env.PORT || 5000;
+
+createAdmin();
 
 let users = [] as { userId: string; socketId: string }[];
 
@@ -73,31 +74,5 @@ server.listen(port, async () => {
   async () => {
     // eslint-disable-next-line no-console
     console.log(`Listening: http://localhost:${port}`);
-
-    const user = await prisma.user.findUnique({
-      where: {
-        email: process.env.USER_EMAIL,
-      },
-    });
-
-    if (!user) {
-      await prisma.user.create({
-        data: {
-          username: process.env.USER_USERNAME as string,
-          profilTitle: process.env.USER_PROFILTITLE as string,
-          email: process.env.USER_EMAIL as string,
-          password: bcrypt.hashSync(process.env.USER_PASSWORD as string, 10),
-          city: process.env.USER_CITY,
-          birthDate: process.env.USER_BIRTHDATE as string,
-          role: 'ADMIN',
-          avatarUrl: process.env.USER_AVATAR_URL,
-          landimageUrl: process.env.USER_LANDING_URL,
-          idFormation: '',
-        },
-      });
-
-      // eslint-disable-next-line no-console
-      console.log(`Created new user with email ${process.env.USER_EMAIL}`);
-    }
   };
 });
