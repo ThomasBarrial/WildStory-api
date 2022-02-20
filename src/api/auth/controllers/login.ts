@@ -32,8 +32,8 @@ const login: AuthHandler['login'] = async (req, res, next) => {
 
     res.cookie('token', token, {
       maxAge: 86_400_000,
-      secure: false,
-      domain: 'localhost:3000',
+      httpOnly: true,
+      secure: true,
     });
 
     res.set({ 'Access-Control-Allow-Credentials': true });
