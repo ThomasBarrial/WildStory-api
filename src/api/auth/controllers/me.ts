@@ -4,8 +4,9 @@ import { verify } from 'jsonwebtoken';
 
 const me: AuthHandler['me'] = async (req, res, next) => {
   try {
+    console.log(req);
     const jwtPayload = verify(req.cookies.token, process.env.SECRET as string);
-    console.log(jwtPayload);
+
     if (typeof jwtPayload === 'string') {
       return res
         .status(401)
