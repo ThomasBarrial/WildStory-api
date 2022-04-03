@@ -1,5 +1,4 @@
 import { UserHandlers } from 'env';
-import { verify } from 'jsonwebtoken';
 import { prisma } from '../../../../prisma/prismaClient';
 
 const updateUser: UserHandlers['put'] = async (req, res, next) => {
@@ -16,19 +15,6 @@ const updateUser: UserHandlers['put'] = async (req, res, next) => {
     idFormation,
   } = req.body;
   try {
-    const jwtPayload = verify(req.cookies.token, process.env.SECRET as string);
-    if (typeof jwtPayload === 'string') {
-      return res
-        .status(401)
-        .json({ message: 'You need to login', type: 'LOGIN_ERROR' });
-    }
-
-    if (jwtPayload.userId !== id && jwtPayload.role !== 'ADMIN') {
-      return res.status(401).send({
-        message: 'You cannot update an other user',
-        type: 'ACCES_ERROR',
-      });
-    }
     const user = await prisma.user.update({
       where: {
         id,

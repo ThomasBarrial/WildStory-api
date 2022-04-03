@@ -194,3 +194,11 @@ interface APIError {
   type: string;
   message: string;
 }
+
+declare global {
+  namespace Express {
+    interface Request {
+      user?: ICustomJWT;
+    }
+  }
+}
