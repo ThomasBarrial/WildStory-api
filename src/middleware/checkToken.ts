@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { NextFunction, Response } from 'express';
 import jwt from 'jsonwebtoken';
 
@@ -6,7 +7,8 @@ function checkToken(req: any, res: Response, next: NextFunction): void {
   try {
     const { token } = req.cookies;
 
-    if (typeof token === 'undefined') {
+    console.log(req);
+    if (!token) {
       throw new Error('You need to login.');
     }
 
