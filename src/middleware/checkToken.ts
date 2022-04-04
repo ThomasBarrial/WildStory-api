@@ -7,7 +7,6 @@ function checkToken(req: any, res: Response, next: NextFunction): void {
   try {
     const { token } = req.cookies;
 
-    console.log(req);
     if (!token) {
       throw new Error('You need to login.');
     }
