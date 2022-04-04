@@ -1,5 +1,6 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+import dayjs from 'dayjs';
 import { prisma } from '../../../../prisma/prismaClient';
 import { AuthHandler } from '../interface';
 
@@ -31,9 +32,9 @@ const login: AuthHandler['login'] = async (req, res, next) => {
     );
 
     res.cookie('token', token, {
-      maxAge: 86_400_000,
+      expires: dayjs().add(30, 'days').toDate(),
       sameSite: 'none',
-      secure: true,
+      secure: process.env.NODE_ENV !== 'development',
     });
 
     res.set({ 'Access-Control-Allow-Credentials': true });
