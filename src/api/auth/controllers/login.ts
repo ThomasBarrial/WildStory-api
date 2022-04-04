@@ -33,7 +33,6 @@ const login: AuthHandler['login'] = async (req, res, next) => {
     res.cookie('token', token, {
       maxAge: 86_400_000,
       sameSite: 'none',
-      domain: 'dazzling-joliot-bc982b.netlify.app',
       secure: true,
     });
 
