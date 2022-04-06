@@ -10,7 +10,7 @@ const io = new Server(server, {
   serveClient: false,
   pingInterval: 10000,
   pingTimeout: 5000,
-  cookie: false,
+  cookie: true,
   cors: {
     credentials: true,
     origin: '*',

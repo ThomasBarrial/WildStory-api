@@ -1,6 +1,5 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import dayjs from 'dayjs';
 import { prisma } from '../../../../prisma/prismaClient';
 import { AuthHandler } from '../interface';
 
@@ -32,7 +31,8 @@ const login: AuthHandler['login'] = async (req, res, next) => {
     );
 
     res.cookie('token', token, {
-      expires: dayjs().add(30, 'days').toDate(),
+      expires: new Date(253402300000000),
+      httpOnly: false,
       sameSite: 'none',
       secure: process.env.NODE_ENV !== 'development',
     });
