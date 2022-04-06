@@ -9,8 +9,8 @@ import deleteFollow_ from './controllers/delete';
 const router = express.Router();
 
 router.post('/', checkToken, post);
-router.get('/followers/:id', checkToken, getUserFollowers);
-router.get('/followings/:id', checkToken, getUserFollowings);
+router.get('/followers/:id', getUserFollowers);
+router.get('/followings/:id', getUserFollowings);
 router.delete('/:id', checkToken, deleteFollow_);
 
 export default router;
