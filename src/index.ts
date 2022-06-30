@@ -5,7 +5,6 @@ const server = http.createServer(app);
 import { Server } from 'socket.io';
 import createAdmin from './middleware/CreateAdmin';
 
-// import createConversation from './api/conversation/controllers/create';
 const io = new Server(server, {
   serveClient: false,
   pingInterval: 10000,
@@ -53,17 +52,21 @@ io.on('connection', (socket) => {
   });
 
   // send and get message
-  socket.on('sendMessage', ({ receiverId, text, senderId, conversationId }) => {
-    const user = getUser(receiverId);
-    io.to(user?.socketId as string).emit('getMessage', {
-      text,
-      senderId,
-      conversationId,
-    });
-  });
+  socket.on(
+    'sendMessage',
+    ({ receiverId, text, senderId, conversationId, id }) => {
+      const user = getUser(receiverId);
+      io.to(user?.socketId as string).emit('getMessage', {
+        id,
+        text,
+        senderId,
+        conversationId,
+      });
+    }
+  );
 
   // when disconnect
-  socket.on('disconnect', () => {
+  socket.on('removeUser', () => {
     removeUser(socket.id);
     io.emit('getUsers', users);
   });

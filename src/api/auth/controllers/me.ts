@@ -2,14 +2,20 @@ import { prisma } from '../../../../prisma/prismaClient';
 import { AuthHandler } from '../interface';
 import { verify } from 'jsonwebtoken';
 
-const me: AuthHandler['me'] = async (req, res, next) => {
-  try {
-    const jwtPayload = verify(req.cookies.token, process.env.SECRET as string);
+const me: AuthHandler['me'] = async (req, res) => {
+  const token = req.headers.authorization;
+
+  if (token === '') {
+    return res
+      .status(401)
+      .json({ message: 'You need to login', type: 'LOGIN_ERROR' });
+  } else {
+    const jwtPayload = verify(token as string, process.env.SECRET as string);
 
     if (typeof jwtPayload === 'string') {
       return res
         .status(401)
-        .json({ message: 'You need to login', type: 'LOGIN_ERROR' });
+        .json({ message: 'Wrong token', type: 'LOGIN_ERROR' });
     }
     const user = await prisma.user.findUnique({
       where: {
@@ -25,13 +31,12 @@ const me: AuthHandler['me'] = async (req, res, next) => {
         updatedAt: true,
       },
     });
+
+    const content = { ...user, token };
+
     if (user) {
-      return res.status(200).json(user);
+      return res.status(200).json(content);
     }
-    res.status(401);
-    throw new Error('Unknown user.');
-  } catch (e) {
-    next(e);
   }
 };
 

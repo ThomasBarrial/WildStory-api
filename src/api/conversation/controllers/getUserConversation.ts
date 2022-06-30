@@ -20,9 +20,14 @@ const getUserConversations: ConversationHandler['getUserConversations'] =
           user1Id: true,
           user2Id: true,
           isNewMessage: true,
+          message: {
+            orderBy: {
+              createdAt: 'desc',
+            },
+          },
         },
         orderBy: {
-          createdAt: 'desc',
+          isNewMessage: 'desc',
         },
       });
 
