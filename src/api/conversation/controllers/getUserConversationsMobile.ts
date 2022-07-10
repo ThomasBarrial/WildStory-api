@@ -1,7 +1,7 @@
 import { ConversationHandler } from 'env';
 import { prisma } from '../../../../prisma/prismaClient';
 
-const getUserConversations: ConversationHandler['getUserConversations'] =
+const getUserConversationsMobile: ConversationHandler['getUserConversations'] =
   async (req, res, next) => {
     const { id } = req.params;
 
@@ -20,9 +20,15 @@ const getUserConversations: ConversationHandler['getUserConversations'] =
           user1Id: true,
           user2Id: true,
           isNewMessage: true,
+          updatedAt: true,
+          message: {
+            orderBy: {
+              createdAt: 'desc',
+            },
+          },
         },
         orderBy: {
-          createdAt: 'desc',
+          updatedAt: 'desc',
         },
       });
 
@@ -32,4 +38,4 @@ const getUserConversations: ConversationHandler['getUserConversations'] =
     }
   };
 
-export default getUserConversations;
+export default getUserConversationsMobile;

@@ -6,8 +6,9 @@ import jwt from 'jsonwebtoken';
 function checkToken(req: any, res: Response, next: NextFunction): void {
   try {
     const { token } = req.cookies;
+    const { tokenMobile } = req.headers.authorization;
 
-    if (!token) {
+    if (!token || tokenMobile) {
       throw new Error('You need to login.');
     }
 

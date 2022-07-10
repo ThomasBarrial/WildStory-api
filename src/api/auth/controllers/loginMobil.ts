@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken';
 import { prisma } from '../../../../prisma/prismaClient';
 import { AuthHandler } from '../interface';
 
-const login: AuthHandler['login'] = async (req, res, next) => {
+const loginMobile: AuthHandler['login'] = async (req, res, next) => {
   const { username, password } = req.body;
 
   try {
@@ -22,28 +22,21 @@ const login: AuthHandler['login'] = async (req, res, next) => {
       throw new Error('Wrong password');
     }
 
-    const { password: _pw, ...whithouPassword } = user;
-
     const token = jwt.sign(
       { username: user.username, userId: user.id, role: user.role },
       process.env.SECRET as string,
       { expiresIn: '24h' }
     );
 
-    res.cookie('token', token, {
-      expires: new Date(253402300000000),
-      httpOnly: false,
-      sameSite: 'none',
-      secure: process.env.NODE_ENV !== 'development',
-    });
+    const { password: _pw, ...whithouPassword } = user;
 
-    res.set({ 'Access-Control-Allow-Credentials': true });
+    const content = { ...whithouPassword, token };
 
-    return res.status(200).json(whithouPassword);
+    return res.status(200).json(content);
   } catch (e) {
     res.status(400);
     return next(e);
   }
 };
 
-export default login;
+export default loginMobile;
