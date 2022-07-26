@@ -41,14 +41,12 @@ io.on('connection', (socket) => {
   //when connect
   // take userId and socketId from user
   socket.on('addUser', (userId) => {
-    console.log('addUsers', socket.id);
     addUser(userId, socket.id);
     io.emit('getUsers', users);
   });
 
   // send new conversation
   socket.on('createConversation', ({ receiverId }) => {
-    console.log(users);
     const user = getUser(receiverId);
     io.to(user?.socketId as string).emit('getConversation');
   });
@@ -58,7 +56,6 @@ io.on('connection', (socket) => {
     'sendMessage',
     ({ receiverId, text, senderId, conversationId, id }) => {
       const user = getUser(receiverId);
-      console.log(users);
       io.to(user?.socketId as string).emit('getMessage', {
         id,
         text,
@@ -70,7 +67,6 @@ io.on('connection', (socket) => {
 
   // when disconnect
   socket.on('removeUser', () => {
-    console.log('remove user', socket.id);
     removeUser(socket.id);
     io.emit('getUsers', users);
   });

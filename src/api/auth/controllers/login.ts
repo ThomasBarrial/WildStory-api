@@ -32,7 +32,7 @@ const login: AuthHandler['login'] = async (req, res, next) => {
 
     res.cookie('token', token, {
       expires: new Date(253402300000000),
-      httpOnly: false,
+      httpOnly: true,
       sameSite: 'none',
       secure: process.env.NODE_ENV !== 'development',
     });
