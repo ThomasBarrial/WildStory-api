@@ -18,6 +18,9 @@ const getConversationMessages: MessagesHandler['getConversationMessages'] =
           text: true,
           createdAt: true,
         },
+        orderBy: {
+          createdAt: 'asc',
+        },
       });
 
       res.status(200).json(messages);

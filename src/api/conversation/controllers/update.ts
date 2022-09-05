@@ -15,6 +15,7 @@ const updateConversation: ConversationHandler['update'] = async (
       },
       data: {
         isNewMessage,
+        updatedAt: new Date(),
       },
       select: {
         id: true,

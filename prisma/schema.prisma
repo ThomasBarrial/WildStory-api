@@ -151,6 +151,7 @@ model Conversation {
   members      User[]
   message      Message[] @relation("conversation")
   createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @default(now())
   user1Id      String
   user2Id      String
   isNewMessage String   @default("")

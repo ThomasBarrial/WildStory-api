@@ -24,7 +24,7 @@ const deleteUserSkill: UserSkillsHandlers['delete'] = async (
 
     if (jwtPayload.userId !== userSkilltoDelete?.userId) {
       return res.status(401).send({
-        message: 'You cannot update an other user',
+        message: 'You can not delete this ressource for an other user',
         type: 'ACCES_ERROR',
       });
     }

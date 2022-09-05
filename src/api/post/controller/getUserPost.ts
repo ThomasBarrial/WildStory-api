@@ -22,6 +22,9 @@ const getUserPost: UserPostHandlers['getUserPost'] = async (req, res, next) => {
         createdAt: true,
         updatedAt: true,
       },
+      orderBy: {
+        createdAt: 'desc',
+      },
     });
 
     res.status(200).json(userPosts);

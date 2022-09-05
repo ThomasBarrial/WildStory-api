@@ -10,6 +10,7 @@ const getAll: UserHandlers['getAll'] = async (req, res, next) => {
         email: true,
         city: true,
         birthDate: true,
+        profilTitle: true,
         avatarUrl: true,
         landimageUrl: true,
         idFormation: true,

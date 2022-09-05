@@ -5,7 +5,7 @@ const createMessage: MessagesHandler['post'] = async (req, res, next) => {
   const { conversationId, senderId, text } = req.body;
 
   try {
-    const Messsage = await prisma.message.create({
+    const Message = await prisma.message.create({
       data: {
         conversationId,
         senderId,
@@ -20,16 +20,7 @@ const createMessage: MessagesHandler['post'] = async (req, res, next) => {
       },
     });
 
-    if (Messsage.text === '') {
-      await prisma.message.delete({
-        where: {
-          id: Messsage.id,
-        },
-      });
-      res.status(204).json('empty message');
-    } else {
-      res.status(201).json(Messsage);
-    }
+    res.status(201).json(Message);
   } catch (error) {
     next(error);
   }
