@@ -23,7 +23,7 @@ app.use(
 
 const rateLimiter = rateLimit({
   windowMs: 10 * 1000, // ten seconds
-  max: 50, // limit each IP address to 50 requests / 10 seconds
+  max: 1000, // limit each IP address to 50 requests / 10 seconds
   message: {
     message: 'Too many requests, please try again later.',
     status: 429,
